@@ -8,7 +8,7 @@ class mainGame implements Game {
   width: number;
   height: number;
   ctx: any;
-  keyboardEventsListeners:GameFieldObject[];
+  keyboardEventsListeners:GameFieldObject[] = [];
 
   constructor(width: number, height: number) {
     this.height = height;
@@ -23,11 +23,13 @@ class mainGame implements Game {
   }
 
   clock():void {
-    console.log('clock');
+    //console.log('clock');
   }
 
   keyboardHandler(e: KeyboardEvent): void {
-    console.log('keyboard event:', e);
+   // console.log('keyboard event:', e);
+    console.log('keyboardEventsListeners', this.keyboardEventsListeners);
+
     this.keyboardEventsListeners.forEach((i) => i.keyboardHandler(e));
   }
 
@@ -40,14 +42,15 @@ class mainGame implements Game {
     const isDrawable = 
       Object.prototype.hasOwnProperty.call(o, 'draw') && typeof o.draw ==='function';
     const isKeyboardListener = 
-      Object.prototype.hasOwnProperty.call(o, 'keyboardHandler') && typeof o.keyboardHandler ==='function';
-    isKeyboardListener && this._addNewKeyboardListener
-    console.log('is drawable:', isDrawable);
-    console.log('is isKeyboardListener:', isKeyboardListener);
+    "keyboardHandler" in o && typeof o.keyboardHandler ==='function';
+    isKeyboardListener && this._addNewKeyboardListener(o);
+    console.log('is isKeyboardListener:', isKeyboardListener, o);
  }
 
  _addNewKeyboardListener(o: GameFieldObject): void {
   this.keyboardEventsListeners.push(o);
+  console.log('_addNewKeyboardListener:', this.keyboardEventsListeners);
+
  }
 
   _addCanvasElement():HTMLCanvasElement {

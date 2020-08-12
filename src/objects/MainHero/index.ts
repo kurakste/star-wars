@@ -1,5 +1,6 @@
+import Hero from '../../interfaces/Hero';
 class MainHero {
-  width: number;
+  width: number = 0;
   height: number;
   id: string;
   type: string;
