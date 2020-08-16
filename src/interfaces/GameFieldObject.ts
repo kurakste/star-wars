@@ -1,8 +1,12 @@
+import GameObjTypes from './GameObjTypes';
+import Events from './Events';
+
 interface GameFieldObject  {
   id: string;
-  type: string;
+  type: GameObjTypes;
   width: number;
   height: number;
+  subscribes: Events[];
 
   draw?: (o: any) => void;
   keyboardHandler?: (e: KeyboardEvent) => void;

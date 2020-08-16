@@ -1,14 +1,20 @@
-
 import imageLoader from '../../helpers/imageLoader';
 import imgPath from '../../assets/img/mainHero2.png';
 import Game from '../../interfaces/Game';
+import KeyboardController from './Controllers/KeyboardController';
+import ClockController from './Controllers/ClockController'
 import GameFieldObject from '../../interfaces/GameFieldObject';
+import Events from '../../interfaces/Events';
+
 
 class mainGame implements Game {
   width: number;
   height: number;
   ctx: any;
-  keyboardEventsListeners:GameFieldObject[] = [];
+  keyboardController = new KeyboardController();
+  clockController = new ClockController();
+  events = Events;
+  
 
   constructor(width: number, height: number) {
     this.height = height;
@@ -22,15 +28,12 @@ class mainGame implements Game {
     console.log('init game done');
   }
 
-  clock():void {
-    //console.log('clock');
+  clock = () => {
+    this.clockController.eventHandler();
   }
 
   keyboardHandler(e: KeyboardEvent): void {
-   // console.log('keyboard event:', e);
-    console.log('keyboardEventsListeners', this.keyboardEventsListeners);
-
-    this.keyboardEventsListeners.forEach((i) => i.keyboardHandler(e));
+    this.keyboardController.eventHandler(e);  
   }
 
   async draw(): Promise<void> {
@@ -39,19 +42,18 @@ class mainGame implements Game {
   }
 
   addObjectOnField(o: GameFieldObject): void {
-    const isDrawable = 
-      Object.prototype.hasOwnProperty.call(o, 'draw') && typeof o.draw ==='function';
-    const isKeyboardListener = 
-    "keyboardHandler" in o && typeof o.keyboardHandler ==='function';
-    isKeyboardListener && this._addNewKeyboardListener(o);
-    console.log('is isKeyboardListener:', isKeyboardListener, o);
+    console.log('addObjectOnField', o.subscribes)
+    o.subscribes.map(el => this.subscriber(el, o)) 
  }
 
- _addNewKeyboardListener(o: GameFieldObject): void {
-  this.keyboardEventsListeners.push(o);
-  console.log('_addNewKeyboardListener:', this.keyboardEventsListeners);
-
- }
+  subscriber(el:Events, obj:GameFieldObject){
+    console.log('subscriber', el, obj);
+    switch(el) {
+      case Events.Keyboard:
+        this.keyboardController.addNewEventListener(obj);
+        break
+    }
+  }
 
   _addCanvasElement():HTMLCanvasElement {
     const can:HTMLCanvasElement = document.createElement('canvas');
