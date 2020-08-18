@@ -1,13 +1,11 @@
-import mainGame from './objects/mainGameUnit/index';
+import MainGame from './objects/mainGameUnit/index';
 import MainHero from './objects/MainHero';
 
 (async function() {
   const main = new MainHero();
     console.log('----------', "keyboardHandler" in main); 
-  const game = new mainGame(400, 600);
+  const game = new MainGame(400, 900);
   await game.initGame();
-
-  game.draw();
 
   game.addObjectOnField(main);
   setInterval(game.clock, 8);

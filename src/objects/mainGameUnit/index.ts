@@ -1,52 +1,47 @@
-import imageLoader from '../../helpers/imageLoader';
-import imgPath from '../../assets/img/mainHero2.png';
 import Game from '../../interfaces/Game';
 import KeyboardController from './Controllers/KeyboardController';
 import ClockController from './Controllers/ClockController'
 import GameFieldObject from '../../interfaces/GameFieldObject';
+import DrawController from './Controllers/DrawController';
+import MapController from './Controllers/MapController';
 import Events from '../../interfaces/Events';
 
 
-class mainGame implements Game {
-  width: number;
-  height: number;
-  ctx: any;
-  keyboardController = new KeyboardController();
-  clockController = new ClockController();
+class MainGame implements Game {
+  
+  private keyboardController = new KeyboardController();
+  private clockController = new ClockController();
+  private drawController:DrawController;
+  private mapController = new MapController();
   events = Events;
   
-
   constructor(width: number, height: number) {
-    this.height = height;
-    this.width = width;
+    this.drawController = new DrawController(width, height);
   }
 
-  async initGame(): Promise<void> {
-    const canvas: HTMLCanvasElement = this._addCanvasElement();
-    this.ctx = canvas.getContext('2d');
-    document.body.appendChild(canvas);
+  public async initGame(): Promise<void> {
+    const can:HTMLCanvasElement = document.createElement('canvas');
+    document.body.appendChild(can);
+    this.drawController.init(can);
     console.log('init game done');
   }
 
-  clock = () => {
+  public clock = async () => {
     this.clockController.eventHandler();
+    await this.drawController.draw();
   }
 
-  keyboardHandler(e: KeyboardEvent): void {
+  public keyboardHandler(e: KeyboardEvent): void {
     this.keyboardController.eventHandler(e);  
   }
 
-  async draw(): Promise<void> {
-    const img: any = await imageLoader(imgPath);
-    this.ctx.drawImage(img, 0, 0, 312, 312, 20, 20, 90, 90);
-  }
 
-  addObjectOnField(o: GameFieldObject): void {
+  public addObjectOnField(o: GameFieldObject): void {
     console.log('addObjectOnField', o.subscribes)
     o.subscribes.map(el => this.subscriber(el, o)) 
  }
 
-  subscriber(el:Events, obj:GameFieldObject){
+  private subscriber(el:Events, obj:GameFieldObject){
     console.log('subscriber', el, obj);
     switch(el) {
       case Events.Keyboard:
@@ -54,15 +49,6 @@ class mainGame implements Game {
         break
     }
   }
-
-  _addCanvasElement():HTMLCanvasElement {
-    const can:HTMLCanvasElement = document.createElement('canvas');
-    can.width = this.width;
-    can.height = this.height;
-    can.style.background = 'black';
-    return can;
-  }
-
 }
 
-export default mainGame;
+export default MainGame;
