@@ -6,6 +6,7 @@ import MainHero from './objects/MainHero';
     console.log('----------', "keyboardHandler" in main); 
   const game = new MainGame(400, 900);
   await game.initGame();
+  
 
   game.addObjectOnField(main);
   setInterval(game.clock, 8);

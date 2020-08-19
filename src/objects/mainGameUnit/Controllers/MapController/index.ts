@@ -1,6 +1,24 @@
 import GameFieldObject from '../../../../interfaces/GameFieldObject';
+import myMap from '../../../../maps/testMap';
+import gameFieldObjectTypes from '../../../../interfaces/gameObjTypes';
+import IMapElement from '../../../../interfaces/IMapElement';
+import MainHero from '../../../MainHero'
 class MapController {
-  map: GameFieldObject[];
+  map: GameFieldObject[] =[];
+
+  loadMap() {
+    console.log('load map', myMap)
+    myMap.map((el:IMapElement ) => {
+      switch (el.type) {
+        case gameFieldObjectTypes.mainGameActor: 
+        let obj = new MainHero();
+        obj.xpos = el.params.xpos;
+        obj.ypos = el.params.ypos;
+        this.addActor(obj);
+        break;
+      }
+    });
+  }
 
   public addActor(a: GameFieldObject) {
     this.map.push(a);
@@ -8,6 +26,10 @@ class MapController {
 
   public removeActor(a: GameFieldObject) {
     this.map = this.map.filter((e) => e.id !== a.id);
+  }
+
+  getMap() {
+    return this.map.slice();
   }
 } 
 

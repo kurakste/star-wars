@@ -1,4 +1,4 @@
-import GameObjTypes from './GameObjTypes';
+import GameObjTypes from './gameObjTypes';
 import Events from './Events';
 
 interface GameFieldObject  {

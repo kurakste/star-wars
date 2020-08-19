@@ -23,12 +23,14 @@ class MainGame implements Game {
     const can:HTMLCanvasElement = document.createElement('canvas');
     document.body.appendChild(can);
     this.drawController.init(can);
+    this.mapController.loadMap();
     console.log('init game done');
   }
 
   public clock = async () => {
     this.clockController.eventHandler();
-    await this.drawController.draw();
+    await this.drawController.drawMap(this.mapController.getMap());
+    
   }
 
   public keyboardHandler(e: KeyboardEvent): void {

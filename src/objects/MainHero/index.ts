@@ -1,10 +1,16 @@
 import * as cryptoRandomString from 'crypto-random-string';
 import Events from '../../interfaces/Events';
-import GameObjTypes from '../../interfaces/GameObjTypes';
+import GameObjTypes from '../../interfaces/gameObjTypes';
+import imgPath from './mainHero2.png';
+import imageLoader from '../../helpers/imageLoader';
+
+
 
   class MainHero {
-  width: number = 0;
-  height: number;
+  width: number = 10;
+  height: number = 20;
+  xpos: number;
+  ypos: number;
   id: string;
   type: GameObjTypes;
   subscribes: Events[] = [];
@@ -18,6 +24,11 @@ import GameObjTypes from '../../interfaces/GameObjTypes';
 
   keyboardHandler(e: KeyboardEvent) {
     console.log('from Main hero keyboard handler');
+  }
+
+  async draw(ctx: CanvasRenderingContext2D) {
+    const img: any = await imageLoader(imgPath);
+    ctx.drawImage(img, 0, 0, 312, 312, 20, 20, 90, 90);
   }
 }
 

@@ -1,4 +1,4 @@
-interface Hero {
+interface IHero {
   width: number;
   height: number;
   id: string;
@@ -7,4 +7,4 @@ interface Hero {
   keyboardHandler(e: KeyboardEvent): void;
 }
 
-export default Hero;
+export default IHero;

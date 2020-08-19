@@ -1,6 +1,5 @@
-import imgPath from '../../../../assets/img/mainHero2.png';
-import imageLoader from '../../../../helpers/imageLoader';
 import Controller from '../Controller';
+import GameFieldObject from '../../../../interfaces/GameFieldObject';
 class DrawController extends Controller {
   private readonly width: number;
   private readonly height: number;
@@ -21,13 +20,14 @@ class DrawController extends Controller {
   }
 
   public async draw(): Promise<void> {
-    const img: any = await imageLoader(imgPath);
-    this.ctx.drawImage(img, 0, 0, 312, 312, 20, 20, 90, 90);
+    
   }
 
-  public async drawMap(): Promise<void> {
-    const img: any = await imageLoader(imgPath);
-    this.ctx.drawImage(img, 0, 0, 312, 312, 20, 20, 90, 90);
+  public async drawMap(_map: GameFieldObject[]): Promise<void> {
+    _map.map(el => {
+      el.draw && el.draw(this.ctx);
+    });
+    
   }
 
 }
