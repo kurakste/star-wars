@@ -1,6 +1,5 @@
 import Events from '../../../interfaces/Events';
 import GameObjTypes from '../../../interfaces/gameObjTypes';
-import imgPath from './ships_2.jpg';
 import Actor from '../Actors';
 
   class MainHero extends Actor{
@@ -9,14 +8,17 @@ import Actor from '../Actors';
 
   constructor(xpos: number, ypos: number) {
     super();
-    this.width = 10;
-    this.height = 20;
+    this.width = 50;
+    this.height = 50;
     this.xpos = xpos;
     this.ypos = ypos;
     this.subscribes = [Events.Keyboard, Events.Clock, Events.Draw ];
     this.type = GameObjTypes.mainGameActor;
-    this.img = new Image();
-    this.img.src = imgPath;
+    this.spriteXOffset = 0;
+    this.spriteYOffset = 0;
+    this.spriteHeight = 90;
+    this.spriteWidth = 100;
+    
   };
 
   public keyboardHandler(e: KeyboardEvent) {
