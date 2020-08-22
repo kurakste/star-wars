@@ -1,4 +1,4 @@
-export default function(src:string){
+export default function(src:string): Promise<HTMLImageElement>{
   return new Promise((resolve, reject) => {
     const img = new Image()
     img.onload = () => resolve(img);
