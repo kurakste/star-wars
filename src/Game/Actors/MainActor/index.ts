@@ -1,44 +1,30 @@
-import * as cryptoRandomString from 'crypto-random-string';
-import Events from '../../interfaces/Events';
-import GameObjTypes from '../../interfaces/gameObjTypes';
+import Events from '../../../interfaces/Events';
+import GameObjTypes from '../../../interfaces/gameObjTypes';
 import imgPath from './ships_2.jpg';
-  class MainHero {
-  width: number = 10;
-  height: number = 20;
-  xpos: number = 0;
-  ypos: number = 0;
-  id: string;
-  vSpeed = 10;
-  hSpeed = 10;
-  type: GameObjTypes;
-  subscribes: Events[] = [];
-  img: HTMLImageElement;
+import Actor from '../Actors';
+
+  class MainHero extends Actor{
+  private vSpeed = 10;
+  private hSpeed = 10;
 
   constructor() {
+    super();
+    this.width = 10;
+    this.height = 20;
+    this.xpos = 0;
+    this.ypos = 0;
     this.subscribes = [Events.Keyboard, Events.Clock, Events.Draw ];
-    this.id = cryptoRandomString({length: 10});
     this.type = GameObjTypes.mainGameActor;
     this.img = new Image();
     this.img.src = imgPath;
   };
 
-
-  clock(){
-    //this.xpos =  this.xpos + 10;
-    console.log('Main Hero clock', this.ypos);
-  }
-
-  keyboardHandler(e: KeyboardEvent) {
+  public keyboardHandler(e: KeyboardEvent) {
     console.log('from Main hero keyboard handler', e);
     e.type === 'keydown' && e.key ==='ArrowRight' && this.moveLeft();
     e.type === 'keydown' && e.key ==='ArrowLeft' && this.moveRight();
     e.type === 'keydown' && e.key ==='ArrowUp' && this.moveUp();
     e.type === 'keydown' && e.key ==='ArrowDown' && this.moveDown();
-  }
-
-  async draw(ctx: CanvasRenderingContext2D) {
-    console.log('main hero, draw');
-    ctx.drawImage(this.img, 0, 0, 90, 90, this.xpos, this.ypos, 90, 90);
   }
 
   private moveLeft() {
