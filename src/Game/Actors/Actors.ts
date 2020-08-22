@@ -43,9 +43,6 @@ class Actor {
       this.height
       );
   }
-
-  
-
 }
 
 export default Actor;
