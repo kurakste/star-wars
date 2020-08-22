@@ -1,4 +1,4 @@
-import Game from '../../interfaces/Game';
+import Game from '../../interfaces/IGame';
 import KeyboardController from './Controllers/KeyboardController';
 import ClockController from './Controllers/ClockController'
 import GameFieldObject from '../../interfaces/GameFieldObject';
@@ -29,8 +29,9 @@ class MainGame implements Game {
 
   public clock = async () => {
     this.clockController.eventHandler();
-    await this.drawController.drawMap(this.mapController.getMap());
-    
+    this.drawController.draw();
+    //await this.drawController.drawMap(this.mapController.getMap());
+
   }
 
   public keyboardHandler(e: KeyboardEvent): void {
@@ -49,6 +50,12 @@ class MainGame implements Game {
       case Events.Keyboard:
         this.keyboardController.addNewEventListener(obj);
         break
+      case Events.Clock:
+        this.clockController.addNewEventListener(obj);
+        break;
+      case Events.Draw: 
+        this.drawController.addNewEventListener(obj);
+        break;
     }
   }
 }

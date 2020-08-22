@@ -3,7 +3,7 @@ import GameFieldObject from '../../../../interfaces/GameFieldObject';
 class DrawController extends Controller {
   private readonly width: number;
   private readonly height: number;
-  private ctx: any;
+  private ctx: CanvasRenderingContext2D;
 
   constructor(width: number, height:number) {
     super();
@@ -20,7 +20,9 @@ class DrawController extends Controller {
   }
 
   public async draw(): Promise<void> {
-    
+    this.ctx.clearRect(0,0, this.width, this.height)
+    console.log('DrawController, draw', this.eventsListeners);
+    this.eventsListeners.map(o => o.draw(this.ctx));
   }
 
   public async drawMap(_map: GameFieldObject[]): Promise<void> {

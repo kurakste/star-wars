@@ -9,7 +9,7 @@ import MainHero from './objects/MainHero';
   
 
   game.addObjectOnField(main);
-  setInterval(game.clock, 8);
+  setInterval(game.clock, 80);
   window.addEventListener('keydown',(e:KeyboardEvent)=>game.keyboardHandler(e));
   window.addEventListener('keyup',(e:KeyboardEvent)=>game.keyboardHandler(e));
 

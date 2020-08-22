@@ -10,6 +10,7 @@ interface GameFieldObject  {
 
   draw?: (o: any) => void;
   keyboardHandler?: (e: KeyboardEvent) => void;
+  clock?:() => void;
 }
 
 export default GameFieldObject;
