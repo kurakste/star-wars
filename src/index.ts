@@ -1,8 +1,8 @@
-import MainGame from './objects/mainGameUnit/index';
-import MainHero from './objects/MainHero';
+import MainGame from './Game/mainGameUnit';
+import Hero from './Game/Actors/Hero';
 
 (async function() {
-  const main = new MainHero();
+  const main = new Hero(200,800);
     console.log('----------', "keyboardHandler" in main); 
   const game = new MainGame(400, 900);
   await game.initGame();

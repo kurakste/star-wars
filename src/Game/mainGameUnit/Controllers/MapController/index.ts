@@ -2,7 +2,7 @@ import GameFieldObject from '../../../../interfaces/GameFieldObject';
 import myMap from '../../../../maps/testMap';
 import gameFieldObjectTypes from '../../../../interfaces/gameObjTypes';
 import IMapElement from '../../../../interfaces/IMapElement';
-import MainHero from '../../../MainHero'
+import MainHero from '../../../Actors/Hero'
 class MapController {
   map: GameFieldObject[] =[];
 
@@ -11,9 +11,7 @@ class MapController {
     myMap.map((el:IMapElement ) => {
       switch (el.type) {
         case gameFieldObjectTypes.mainGameActor: 
-        let obj = new MainHero();
-        obj.xpos = el.params.xpos;
-        obj.ypos = el.params.ypos;
+        let obj = new MainHero(el.params.xpos, el.params.ypos);
         this.addActor(obj);
         break;
       }

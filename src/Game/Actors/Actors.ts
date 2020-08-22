@@ -3,13 +3,13 @@ import Events from '../../interfaces/Events';
 import GameObjTypes from '../../interfaces/gameObjTypes';
   
 class Actor {
+  public id: string;
+  public type: GameObjTypes;
+  public subscribes: Events[] = [];
   protected width: number;
   protected height: number;
   protected xpos: number;
   protected ypos: number;
-  protected id: string;
-  protected type: GameObjTypes;
-  protected subscribes: Events[] = [];
   protected img: HTMLImageElement;
 
   constructor() {

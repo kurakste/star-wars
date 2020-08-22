@@ -7,12 +7,12 @@ import Actor from '../Actors';
   private vSpeed = 10;
   private hSpeed = 10;
 
-  constructor() {
+  constructor(xpos: number, ypos: number) {
     super();
     this.width = 10;
     this.height = 20;
-    this.xpos = 0;
-    this.ypos = 0;
+    this.xpos = xpos;
+    this.ypos = ypos;
     this.subscribes = [Events.Keyboard, Events.Clock, Events.Draw ];
     this.type = GameObjTypes.mainGameActor;
     this.img = new Image();
