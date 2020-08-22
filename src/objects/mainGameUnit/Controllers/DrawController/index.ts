@@ -21,7 +21,7 @@ class DrawController extends Controller {
 
   public async draw(): Promise<void> {
     this.ctx.clearRect(0,0, this.width, this.height)
-    console.log('DrawController, draw', this.eventsListeners);
+    //console.log('DrawController, draw', this.eventsListeners);
     this.eventsListeners.map(o => o.draw(this.ctx));
   }
 

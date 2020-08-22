@@ -1,7 +1,7 @@
 import * as cryptoRandomString from 'crypto-random-string';
 import Events from '../../interfaces/Events';
 import GameObjTypes from '../../interfaces/gameObjTypes';
-import imgPath from './mainHero2.png';
+import imgPath from './ships_2.jpg';
   class MainHero {
   width: number = 10;
   height: number = 20;
@@ -20,7 +20,6 @@ import imgPath from './mainHero2.png';
     this.type = GameObjTypes.mainGameActor;
     this.img = new Image();
     this.img.src = imgPath;
-    //this.img = await imageLoader(imgPath);
   };
 
 
@@ -39,7 +38,7 @@ import imgPath from './mainHero2.png';
 
   async draw(ctx: CanvasRenderingContext2D) {
     console.log('main hero, draw');
-    ctx.drawImage(this.img, 0, 0, 312, 312, this.xpos, this.ypos, 90, 90);
+    ctx.drawImage(this.img, 0, 0, 90, 90, this.xpos, this.ypos, 90, 90);
   }
 
   private moveLeft() {
@@ -57,7 +56,6 @@ import imgPath from './mainHero2.png';
   private moveUp() {
     this.ypos = this.ypos - this.vSpeed;
   }
-
 
 }
 
