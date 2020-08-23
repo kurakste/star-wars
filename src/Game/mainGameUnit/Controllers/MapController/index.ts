@@ -11,8 +11,8 @@ class MapController {
     myMap.map((el:IMapElement ) => {
       switch (el.type) {
         case gameFieldObjectTypes.mainGameActor: 
-        let obj = new MainHero(el.params.xpos, el.params.ypos);
-        this.addActor(obj);
+        //let obj = new MainHero(el.params.xpos, el.params.ypos);
+        // this.addActor(obj);
         break;
       }
     });

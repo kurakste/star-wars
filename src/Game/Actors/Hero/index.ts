@@ -1,11 +1,15 @@
 import Events from '../../../interfaces/Events';
 import GameObjTypes from '../../../interfaces/gameObjTypes';
 import Actor from '../Actors';
+import Fire from './Fire';
+import MainGameUnit from '../../mainGameUnit';
 
   class MainHero extends Actor{
+    game: MainGameUnit;
 
-  constructor(xpos: number, ypos: number) {
+  constructor(game: MainGameUnit, xpos: number, ypos: number, ) {
     super();
+    this.game = game;
     this.width = 50;
     this.height = 50;
     this.xpos = xpos;
@@ -31,6 +35,8 @@ import Actor from '../Actors';
 
   fire() {
     console.log('fire');
+    const fire = new Fire(this.xpos, this.ypos);
+    this.game.addObjectOnField(fire);
   }
 
   

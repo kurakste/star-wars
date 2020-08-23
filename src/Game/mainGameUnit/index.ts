@@ -6,6 +6,7 @@ import DrawController from './Controllers/DrawController';
 import MapController from './Controllers/MapController';
 import Events from '../../interfaces/Events';
 import GameFlowEngine from './GameFlowEngine';
+import Hero from '../Actors/Hero';
 
 
 class MainGame implements Game {
@@ -26,6 +27,8 @@ class MainGame implements Game {
     document.body.appendChild(can);
     this.drawController.init(can);
     this.mapController.loadMap();
+    const main = new Hero(this, 200,800);
+    this.addObjectOnField(main);
     console.log('init game done');
   }
 
