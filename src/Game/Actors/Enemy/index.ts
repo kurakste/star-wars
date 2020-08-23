@@ -1,6 +1,28 @@
 import Actor from '../Actors';
-
+import Events from '../../../interfaces/Events';
+import GameObjTypes from '../../../interfaces/gameObjTypes';
 class Enemy extends Actor {
 
+  constructor(xpos: number, ypos: number) {
+    super();
+    this.width = 50;
+    this.height = 50;
+    this.xpos = xpos;
+    this.ypos = ypos;
+    this.subscribes = [ Events.Clock, Events.Draw ];
+    this.type = GameObjTypes.enemyTypeActor;
+    this.spriteXOffset = 190;
+    this.spriteYOffset = 0;
+    this.spriteHeight = 90;
+    this.spriteWidth = 100;
+    this.vSpeed = 1;
+    this.hSpeed = 1;
+  };
+
+  public clock(){
+    this.ypos = this.ypos + this.vSpeed;
+  }
 }
+
+export default Enemy;
 

@@ -5,6 +5,7 @@ import GameFieldObject from '../../interfaces/GameFieldObject';
 import DrawController from './Controllers/DrawController';
 import MapController from './Controllers/MapController';
 import Events from '../../interfaces/Events';
+import GameFlowEngine from './GameFlowEngine';
 
 
 class MainGame implements Game {
@@ -13,6 +14,7 @@ class MainGame implements Game {
   private clockController = new ClockController();
   private drawController:DrawController;
   private mapController = new MapController();
+  private gameFlowEngine = new GameFlowEngine();
   events = Events;
   
   constructor(width: number, height: number) {
@@ -28,18 +30,17 @@ class MainGame implements Game {
   }
 
   public clock = async () => {
+    this.gameFlowEngine.gameTic(this.addObjectOnField);
     this.clockController.eventHandler();
     this.drawController.draw();
     //await this.drawController.drawMap(this.mapController.getMap());
-
   }
 
   public keyboardHandler(e: KeyboardEvent): void {
     this.keyboardController.eventHandler(e);  
   }
 
-
-  public addObjectOnField(o: GameFieldObject): void {
+  public addObjectOnField = (o: GameFieldObject): void => {
     console.log('addObjectOnField', o.subscribes)
     o.subscribes.map(el => this.subscriber(el, o)) 
  }

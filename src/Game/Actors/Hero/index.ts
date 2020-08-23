@@ -3,8 +3,6 @@ import GameObjTypes from '../../../interfaces/gameObjTypes';
 import Actor from '../Actors';
 
   class MainHero extends Actor{
-  private vSpeed = 10;
-  private hSpeed = 10;
 
   constructor(xpos: number, ypos: number) {
     super();
@@ -18,7 +16,8 @@ import Actor from '../Actors';
     this.spriteYOffset = 0;
     this.spriteHeight = 90;
     this.spriteWidth = 100;
-    
+    this.vSpeed = 10;
+    this.hSpeed = 10;
   };
 
   public keyboardHandler(e: KeyboardEvent) {
@@ -29,21 +28,7 @@ import Actor from '../Actors';
     e.type === 'keydown' && e.key ==='ArrowDown' && this.moveDown();
   }
 
-  private moveLeft() {
-    this.xpos = this.xpos + this.hSpeed;
-  }
-
-  private moveRight() {
-    this.xpos = this.xpos - this.hSpeed;
-  }
-
-  private moveDown() {
-    this.ypos = this.ypos + this.vSpeed;
-  }
-
-  private moveUp() {
-    this.ypos = this.ypos - this.vSpeed;
-  }
+  
 
 }
 

@@ -17,13 +17,16 @@ class Actor {
   protected spriteYOffset: number;
   protected spriteHeight: number;
   protected spriteWidth: number;
+  protected hSpeed:number  = 0;
+  protected vSpeed:number = 0;
+
 
   constructor() {
     if (Actor.spritesImg === undefined) {
       Actor.spritesImg = new Image();
       Actor.spritesImg.src = imgPath;
+      console.log('img from constructor', Actor.spritesImg);
     }
-    console.log('img from constructor', Actor.spritesImg);
     this.id = cryptoRandomString({length: 10});
   };
 
@@ -43,6 +46,20 @@ class Actor {
       this.height
       );
   }
-}
+  protected moveLeft() {
+    this.xpos = this.xpos + this.hSpeed;
+  }
 
+  protected moveRight() {
+    this.xpos = this.xpos - this.hSpeed;
+  }
+  
+  protected moveDown() {
+    this.ypos = this.ypos + this.vSpeed;
+  }
+  
+  protected moveUp() {
+    this.ypos = this.ypos - this.vSpeed;
+  }
+}
 export default Actor;

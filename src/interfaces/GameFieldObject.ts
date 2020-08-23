@@ -1,6 +1,5 @@
 import GameObjTypes from './gameObjTypes';
 import Events from './Events';
-
 interface GameFieldObject  {
   id: string;
   type: GameObjTypes;
