@@ -21,11 +21,16 @@ import Actor from '../Actors';
   };
 
   public keyboardHandler(e: KeyboardEvent) {
-    console.log('from Main hero keyboard handler', e);
+    //console.log('from Main hero keyboard handler', e);
     e.type === 'keydown' && e.key ==='ArrowRight' && this.moveLeft();
     e.type === 'keydown' && e.key ==='ArrowLeft' && this.moveRight();
     e.type === 'keydown' && e.key ==='ArrowUp' && this.moveUp();
     e.type === 'keydown' && e.key ==='ArrowDown' && this.moveDown();
+    e.type === 'keydown' && e.key ===' ' && this.fire();
+  }
+
+  fire() {
+    console.log('fire');
   }
 
   

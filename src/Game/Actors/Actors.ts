@@ -33,7 +33,7 @@ class Actor {
   public clock(){}
 
   public async draw(ctx: CanvasRenderingContext2D) {
-    console.log('Actor draw', this);
+    // console.log('Actor draw', this);
     ctx.drawImage(
       Actor.spritesImg, 
       this.spriteXOffset, 

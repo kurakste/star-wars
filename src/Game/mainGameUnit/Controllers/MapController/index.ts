@@ -7,7 +7,7 @@ class MapController {
   map: GameFieldObject[] =[];
 
   loadMap() {
-    console.log('load map', myMap)
+    // console.log('load map', myMap)
     myMap.map((el:IMapElement ) => {
       switch (el.type) {
         case gameFieldObjectTypes.mainGameActor: 
