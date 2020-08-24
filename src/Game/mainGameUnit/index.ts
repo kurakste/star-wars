@@ -7,18 +7,22 @@ import MapController from './Controllers/MapController';
 import Events from '../../interfaces/Events';
 import GameFlowEngine from './GameFlowEngine';
 import Hero from '../Actors/Hero';
-
+import CollisionController from './Controllers/CollisionsController';
 
 class MainGame implements Game {
-  
+  public readonly height: number;
+  public readonly width: number;
   private keyboardController = new KeyboardController();
   private clockController = new ClockController();
-  private drawController:DrawController;
+  protected drawController:DrawController;
   private mapController = new MapController();
   private gameFlowEngine = new GameFlowEngine();
+  private collisionController = new CollisionController(this);
   events = Events;
   
   constructor(width: number, height: number) {
+    this.width = width;
+    this.height = height;
     this.drawController = new DrawController(width, height);
   }
 
@@ -34,6 +38,7 @@ class MainGame implements Game {
 
   public clock = async () => {
     this.gameFlowEngine.gameTic(this.addObjectOnField);
+    this.collisionController.eventHandler();
     this.clockController.eventHandler();
     this.drawController.draw();
     //await this.drawController.drawMap(this.mapController.getMap());
@@ -48,17 +53,45 @@ class MainGame implements Game {
     o.subscribes.map(el => this.subscriber(el, o)) 
  }
 
+ public removeObjectFromField(o: GameFieldObject) {
+  console.log('removeObjectFromField', o.subscribes)
+  o.subscribes.map(el => this.unSubscribe(el, o))
+ }
+
+ private unSubscribe(el: Events, obj: GameFieldObject) {
+  //  const switcher = {
+  //    [Events.Keyboard]: () => {},
+  //  }
+  switch(el) {
+    case Events.Keyboard:
+      this.keyboardController.removeEventListener(obj);
+      break;
+    case Events.Clock:
+      this.clockController.removeEventListener(obj);
+      break;
+    case Events.Draw: 
+      this.drawController.removeEventListener(obj);
+      break;
+    case Events.Collision: 
+      this.collisionController.removeEventListener(obj);
+      break;
+  }
+ }
+
   private subscriber(el:Events, obj:GameFieldObject){
     console.log('subscriber', el, obj);
     switch(el) {
       case Events.Keyboard:
         this.keyboardController.addNewEventListener(obj);
-        break
+        break;
       case Events.Clock:
         this.clockController.addNewEventListener(obj);
         break;
       case Events.Draw: 
         this.drawController.addNewEventListener(obj);
+        break;
+      case Events.Collision: 
+        this.collisionController.addNewEventListener(obj);
         break;
     }
   }

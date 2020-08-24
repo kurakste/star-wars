@@ -10,7 +10,7 @@ class Fire extends Actor {
     this.height = 40;
     this.xpos = xpos;
     this.ypos = ypos;
-    this.subscribes = [Events.Clock, Events.Draw ];
+    this.subscribes = [Events.Clock, Events.Draw, Events.Collision ];
     this.type = GameObjTypes.mainGameActor;
     this.spriteXOffset = 369
     this.spriteYOffset = 612;

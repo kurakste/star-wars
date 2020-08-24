@@ -14,7 +14,12 @@ import MainGameUnit from '../../mainGameUnit';
     this.height = 50;
     this.xpos = xpos;
     this.ypos = ypos;
-    this.subscribes = [Events.Keyboard, Events.Clock, Events.Draw ];
+    this.subscribes = [
+      Events.Keyboard, 
+      Events.Clock, 
+      Events.Draw, 
+      Events.Collision
+    ];
     this.type = GameObjTypes.mainGameActor;
     this.spriteXOffset = 0;
     this.spriteYOffset = 0;

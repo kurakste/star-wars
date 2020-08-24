@@ -9,10 +9,10 @@ class Actor {
   public id: string;
   public type: GameObjTypes;
   public subscribes: Events[] = [];
-  protected width: number;
-  protected height: number;
-  protected xpos: number;
-  protected ypos: number;
+  public xpos: number;
+  public ypos: number;
+  public width: number;
+  public height: number;
   protected spriteXOffset: number;
   protected spriteYOffset: number;
   protected spriteHeight: number;

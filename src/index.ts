@@ -8,7 +8,7 @@ import Hero from './Game/Actors/Hero';
   await game.initGame();
   
 
-  setInterval(game.clock, 1);
+  setInterval(game.clock, 50);
   window.addEventListener('keydown',(e:KeyboardEvent)=>game.keyboardHandler(e));
   window.addEventListener('keyup',(e:KeyboardEvent)=>game.keyboardHandler(e));
 

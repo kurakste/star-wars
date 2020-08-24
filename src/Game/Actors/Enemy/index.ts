@@ -9,7 +9,7 @@ class Enemy extends Actor {
     this.height = 50;
     this.xpos = xpos;
     this.ypos = ypos;
-    this.subscribes = [ Events.Clock, Events.Draw ];
+    this.subscribes = [ Events.Clock, Events.Draw, Events.Collision ];
     this.type = GameObjTypes.enemyTypeActor;
     this.spriteXOffset = 190;
     this.spriteYOffset = 0;
