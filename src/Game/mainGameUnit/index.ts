@@ -59,41 +59,24 @@ class MainGame implements Game {
  }
 
  private unSubscribe(el: Events, obj: GameFieldObject) {
-  //  const switcher = {
-  //    [Events.Keyboard]: () => {},
-  //  }
-  switch(el) {
-    case Events.Keyboard:
-      this.keyboardController.removeEventListener(obj);
-      break;
-    case Events.Clock:
-      this.clockController.removeEventListener(obj);
-      break;
-    case Events.Draw: 
-      this.drawController.removeEventListener(obj);
-      break;
-    case Events.Collision: 
-      this.collisionController.removeEventListener(obj);
-      break;
-  }
+  const switcher = {
+     [Events.Keyboard]: () => this.keyboardController.removeEventListener(obj),
+     [Events.Draw]: () => this.drawController.removeEventListener(obj),
+     [Events.Clock]: () =>  this.clockController.removeEventListener(obj),
+     [Events.Collision]: () => this.collisionController.removeEventListener(obj),
+   }
+  switcher[el]();
  }
 
   private subscriber(el:Events, obj:GameFieldObject){
     console.log('subscriber', el, obj);
-    switch(el) {
-      case Events.Keyboard:
-        this.keyboardController.addNewEventListener(obj);
-        break;
-      case Events.Clock:
-        this.clockController.addNewEventListener(obj);
-        break;
-      case Events.Draw: 
-        this.drawController.addNewEventListener(obj);
-        break;
-      case Events.Collision: 
-        this.collisionController.addNewEventListener(obj);
-        break;
+    const switcher = {
+      [Events.Keyboard]: () => this.keyboardController.addNewEventListener(obj),
+      [Events.Draw]: () => this.drawController.addNewEventListener(obj),
+      [Events.Clock]: () =>  this.clockController.addNewEventListener(obj),
+      [Events.Collision]: () => this.collisionController.addNewEventListener(obj),
     }
+   switcher[el]();
   }
 }
 
