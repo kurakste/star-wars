@@ -1,6 +1,8 @@
 import Controller from "../Controller";
 import GameFieldObject from '../../../../interfaces/GameFieldObject';
 import Game from '../../../mainGameUnit';
+import checkCollision from './checkCollisionFunction';
+import collides from "./checkCollisionFunction";
 
 class CollisionController extends Controller {
   protected game: Game;
@@ -11,10 +13,19 @@ class CollisionController extends Controller {
   }
 
   eventHandler(): void {
-    console.log('collision controller', this.eventsListeners);
-    this.eventsListeners.map(o => {
+    //console.log('collision controller', this.eventsListeners);
+    this.eventsListeners.map((o, i, arr) => {
       this.checkObjectPositionForCollionWitGameFieldBorder(o) 
-        && this.game.removeObjectFromField(o); 
+        && this.game.removeObjectFromField(o);
+        const shortArr = arr.slice(i+1);
+        shortArr.map(oo => {
+          const collision = this.checkObjectForCollision(o, oo);
+          if (collision) {
+            o.collisionHandler(oo);
+            oo.collisionHandler(o);
+          }
+        });
+
     });
   }
 
@@ -24,25 +35,22 @@ class CollisionController extends Controller {
     return res;
   }
 
+
   protected checkObjectForCollision(o1: GameFieldObject, o2: GameFieldObject) {
-    return this.checkCollision(
-      o1.xpos, o1.ypos, o1.width, o1.height,
-      o2.xpos, o2.ypos, o2.width, o2.height,
-    )
+    const ax0 = o1.xpos, ay0 = o1.ypos, 
+          ax1 = ax0 + o1.width, ay1 = ay0 + o1.height;
+    const bx0 = o2.xpos, by0 = o2.ypos,
+          bx1 = bx0 + o2.width, by1 = by0 + o2.height;
+
+    const isCollision = checkCollision(
+      ax0, ay0, ax1, ay1,
+      bx0, by0, bx1, by1
+    );
+
+    isCollision && console.log('collision', isCollision);//, o1, o2);
+    return isCollision;
   }
 
-  protected checkCollision(
-    ax: number, ay: number, aw: number, ah: number, 
-    bx: number, by: number, bw: number, bh: number
-    ): boolean {
-      const bx1 = bx + bw; 
-      const by1 = by + bh;
-      const ax1 = ax + aw;
-      const ay1 = ay + ah;
-      const collision = ( ay < by1 || ay1 > by || ax1 < bx || ax > bx1 );
-
-      return collision;
-  }
 }
 
 export default CollisionController;

@@ -3,7 +3,7 @@ import Enemy from '../../Actors/Enemy';
 class GameFlowEngine {
   private currentGameTime = 0;
   private lastEnemyBornTime: number;
-  private enemyBornPeriod = 100;
+  private enemyBornPeriod = 200;
   
   constructor() {
     this.lastEnemyBornTime = 0;

@@ -2,6 +2,7 @@ import * as cryptoRandomString from 'crypto-random-string';
 import Events from '../../interfaces/Events';
 import GameObjTypes from '../../interfaces/gameObjTypes';
 import imgPath from './hero_sprites.jpg';
+import GameFieldObject from '../../interfaces/GameFieldObject';
 
   
 class Actor {
@@ -19,6 +20,7 @@ class Actor {
   protected spriteWidth: number;
   protected hSpeed:number  = 0;
   protected vSpeed:number = 0;
+  protected collisions: GameFieldObject[] = [];
 
 
   constructor() {
@@ -45,6 +47,11 @@ class Actor {
       this.width, 
       this.height
       );
+  }
+
+  public collisionHandler(o: GameFieldObject) {
+    console.log('collisionControl. With:', o);
+
   }
   protected moveLeft() {
     this.xpos = this.xpos + this.hSpeed;

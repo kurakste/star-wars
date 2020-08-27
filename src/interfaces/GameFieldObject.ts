@@ -11,6 +11,7 @@ interface GameFieldObject  {
 
   draw?: (o: any) => void;
   keyboardHandler?: (e: KeyboardEvent) => void;
+  collisionHandler: (o: GameFieldObject) => void;
   clock?:() => void;
 }
 
