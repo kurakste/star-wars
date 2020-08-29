@@ -4,6 +4,7 @@ import GameObjTypes from '../../interfaces/gameObjTypes';
 import imgPath from './hero_sprites.jpg';
 import GameFieldObject from '../../interfaces/GameFieldObject';
 import Game from '../mainGameUnit';
+import directions from '../../interfaces/Direction';
 
   
 class Actor {
@@ -23,6 +24,8 @@ class Actor {
   protected vSpeed:number = 0;
   protected collisions: GameFieldObject[] = [];
   protected game: Game; 
+  private isObstacleOnTheWay: boolean = false;
+  private obstacleDirection: directions;
 
 
   constructor(game: Game) {
@@ -38,7 +41,6 @@ class Actor {
   public clock(){}
 
   public async draw(ctx: CanvasRenderingContext2D) {
-    // console.log('Actor draw', this);
     ctx.drawImage(
       Actor.spritesImg, 
       this.spriteXOffset, 
@@ -50,6 +52,11 @@ class Actor {
       this.width, 
       this.height
       );
+  }
+
+  public borderCollisionHandler(dir: directions) {
+    console.log('border collision method', this);
+    this.game.removeObjectFromField(this);
   }
 
   public collisionHandler(o: GameFieldObject) {

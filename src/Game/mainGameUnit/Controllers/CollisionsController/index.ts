@@ -2,6 +2,7 @@ import Controller from "../Controller";
 import GameFieldObject from '../../../../interfaces/GameFieldObject';
 import Game from '../../../mainGameUnit';
 import checkCollision from './checkCollisionFunction';
+import directions from '../../../../interfaces/Direction';
 //import collides from "./checkCollisionFunction";
 
 class CollisionController extends Controller {
@@ -15,8 +16,10 @@ class CollisionController extends Controller {
   eventHandler(): void {
     //console.log('collision controller', this.eventsListeners);
     this.eventsListeners.map((o, i, arr) => {
-      this.checkObjectPositionForCollionWitGameFieldBorder(o) 
-        && this.game.removeObjectFromField(o);
+      if (this.checkObjectPositionForCollionWitGameFieldBorder(o)) {
+        const dir: directions = this.getBorderCollisionDirection(o);
+        o.borderCollisionHandler(dir);
+      } 
         const shortArr = arr.slice(i+1);
         shortArr.map(oo => {
           const collision = this.checkObjectForCollision(o, oo);
@@ -25,8 +28,16 @@ class CollisionController extends Controller {
             oo.collisionHandler(o);
           }
         });
-
     });
+  }
+
+  protected getBorderCollisionDirection(o: GameFieldObject): directions {
+    let dir: directions =directions.right;
+    if (o.xpos<=0) dir = directions.left;
+    if (o.xpos + o.width >= this.game.width) dir = directions.right;
+    if (o.ypos<=0) dir = directions.up;
+    if (o.ypos + o.height >= this.game.height) dir = directions.down
+    return dir
   }
 
   protected checkObjectPositionForCollionWitGameFieldBorder(o: GameFieldObject): boolean {

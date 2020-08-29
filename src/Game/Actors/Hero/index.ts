@@ -3,13 +3,13 @@ import GameObjTypes from '../../../interfaces/gameObjTypes';
 import Actor from '../Actors';
 import Fire from './Fire';
 import MainGameUnit from '../../mainGameUnit';
+import directions from '../../../interfaces/Direction';
 
   class MainHero extends Actor{
-    game: MainGameUnit;
+    
 
   constructor(game: MainGameUnit, xpos: number, ypos: number, ) {
     super(game);
-    this.game = game;
     this.width = 50;
     this.height = 50;
     this.xpos = xpos;
@@ -27,15 +27,24 @@ import MainGameUnit from '../../mainGameUnit';
     this.spriteWidth = 100;
     this.vSpeed = 10;
     this.hSpeed = 10;
+
   };
 
   public keyboardHandler(e: KeyboardEvent) {
     //console.log('from Main hero keyboard handler', e);
-    e.type === 'keydown' && e.key ==='ArrowRight' && this.moveLeft();
-    e.type === 'keydown' && e.key ==='ArrowLeft' && this.moveRight();
-    e.type === 'keydown' && e.key ==='ArrowUp' && this.moveUp();
-    e.type === 'keydown' && e.key ==='ArrowDown' && this.moveDown();
+    e.type === 'keydown' && e.key ==='ArrowRight' 
+      && !this.checkIsThereTheGameBoarder(directions.right) && this.moveLeft();
+    e.type === 'keydown' && e.key ==='ArrowLeft'
+      && !this.checkIsThereTheGameBoarder(directions.left) && this.moveRight();
+    e.type === 'keydown' && e.key ==='ArrowUp' 
+      && !this.checkIsThereTheGameBoarder(directions.up) && this.moveUp();
+    e.type === 'keydown' && e.key ==='ArrowDown' 
+      && !this.checkIsThereTheGameBoarder(directions.down)&& this.moveDown();
     e.type === 'keydown' && e.key ===' ' && this.fire();
+  }
+
+  public borderCollisionHandler(dir: directions) {
+    
   }
 
   fire() {
@@ -44,7 +53,18 @@ import MainGameUnit from '../../mainGameUnit';
     this.game.addObjectOnField(fire);
   }
 
-  
+  private checkIsThereTheGameBoarder(dir: directions) {
+    const workMatrix = {
+      [directions.down]: () => this.ypos + this.height >= this.game.height,
+      [directions.up]: () => this.ypos <=0,
+      [directions.left]: () => this.xpos<=0,
+      [directions.right]: () => this.xpos + this.width>=this.game.width,
+    }
+    console.log('checkDirectionBoarder', workMatrix[dir]());
+    return workMatrix[dir]();
+  }
+
+
 
 }
 
