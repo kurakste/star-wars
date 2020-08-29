@@ -2,7 +2,7 @@ import Controller from "../Controller";
 import GameFieldObject from '../../../../interfaces/GameFieldObject';
 import Game from '../../../mainGameUnit';
 import checkCollision from './checkCollisionFunction';
-import collides from "./checkCollisionFunction";
+//import collides from "./checkCollisionFunction";
 
 class CollisionController extends Controller {
   protected game: Game;

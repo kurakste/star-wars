@@ -1,11 +1,12 @@
 import Actor from "../../Actors";
 import Events from '../../../../interfaces/Events';
-import GameObjTypes from '../../../../interfaces/gameObjTypes'
+import GameObjTypes from '../../../../interfaces/gameObjTypes';
+import Game from '../../../mainGameUnit';
 
 class Fire extends Actor {
 
-  constructor(xpos: number, ypos: number) {
-    super();
+  constructor(game: Game, xpos: number, ypos: number) {
+    super(game);
     this.width = 40;
     this.height = 40;
     this.xpos = xpos;

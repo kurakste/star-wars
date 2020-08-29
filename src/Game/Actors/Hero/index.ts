@@ -8,7 +8,7 @@ import MainGameUnit from '../../mainGameUnit';
     game: MainGameUnit;
 
   constructor(game: MainGameUnit, xpos: number, ypos: number, ) {
-    super();
+    super(game);
     this.game = game;
     this.width = 50;
     this.height = 50;
@@ -40,7 +40,7 @@ import MainGameUnit from '../../mainGameUnit';
 
   fire() {
     console.log('fire');
-    const fire = new Fire(this.xpos, this.ypos);
+    const fire = new Fire(this.game, this.xpos, this.ypos);
     this.game.addObjectOnField(fire);
   }
 

@@ -1,10 +1,11 @@
 import Actor from '../Actors';
 import Events from '../../../interfaces/Events';
 import GameObjTypes from '../../../interfaces/gameObjTypes';
+import Game from '../../mainGameUnit';
 class Enemy extends Actor {
 
-  constructor(xpos: number, ypos: number) {
-    super();
+  constructor(game: Game, xpos: number, ypos: number) {
+    super(game);
     this.width = 50;
     this.height = 50;
     this.xpos = xpos;
@@ -22,6 +23,7 @@ class Enemy extends Actor {
   public clock(){
     this.ypos = this.ypos + this.vSpeed;
   }
+
 }
 
 export default Enemy;

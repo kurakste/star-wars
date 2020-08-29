@@ -3,6 +3,7 @@ import Events from '../../interfaces/Events';
 import GameObjTypes from '../../interfaces/gameObjTypes';
 import imgPath from './hero_sprites.jpg';
 import GameFieldObject from '../../interfaces/GameFieldObject';
+import Game from '../mainGameUnit';
 
   
 class Actor {
@@ -21,9 +22,11 @@ class Actor {
   protected hSpeed:number  = 0;
   protected vSpeed:number = 0;
   protected collisions: GameFieldObject[] = [];
+  protected game: Game; 
 
 
-  constructor() {
+  constructor(game: Game) {
+    this.game = game;
     if (Actor.spritesImg === undefined) {
       Actor.spritesImg = new Image();
       Actor.spritesImg.src = imgPath;
@@ -50,8 +53,7 @@ class Actor {
   }
 
   public collisionHandler(o: GameFieldObject) {
-    console.log('collisionControl. With:', o);
-
+    console.log(`collision: ${this.type} - ${this.id}`);
   }
   protected moveLeft() {
     this.xpos = this.xpos + this.hSpeed;

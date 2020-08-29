@@ -16,7 +16,7 @@ class MainGame implements Game {
   private clockController = new ClockController();
   protected drawController:DrawController;
   private mapController = new MapController();
-  private gameFlowEngine = new GameFlowEngine();
+  private gameFlowEngine = new GameFlowEngine(this);
   private collisionController = new CollisionController(this);
   events = Events;
   

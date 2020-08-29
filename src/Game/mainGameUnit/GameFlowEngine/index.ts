@@ -1,11 +1,14 @@
 import Enemy from '../../Actors/Enemy';
+import Game from '../../mainGameUnit';
 
 class GameFlowEngine {
   private currentGameTime = 0;
   private lastEnemyBornTime: number;
   private enemyBornPeriod = 200;
+  private game: Game;
   
-  constructor() {
+  constructor(game: Game) {
+    this.game = game;
     this.lastEnemyBornTime = 0;
   }
 
@@ -20,7 +23,7 @@ class GameFlowEngine {
     if(this.currentGameTime - this.lastEnemyBornTime >=this.enemyBornPeriod) {
       this.lastEnemyBornTime = this.currentGameTime;
       const xpos = Math.random()*400;
-      const enemy = new Enemy(xpos, 20);
+      const enemy = new Enemy(this.game, xpos, 20);
       // console.log('addEnemy start: new object added', enemy)
       cb(enemy);
       // console.log('addEnemy end:', enemy)
