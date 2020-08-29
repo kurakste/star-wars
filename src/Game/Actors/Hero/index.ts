@@ -4,8 +4,7 @@ import Actor from '../Actors';
 import Fire from './Fire';
 import MainGameUnit from '../../mainGameUnit';
 import directions from '../../../interfaces/Direction';
-
-  class MainHero extends Actor{
+class MainHero extends Actor{
 
   constructor(game: MainGameUnit, xpos: number, ypos: number, ) {
     super(game);
@@ -26,11 +25,9 @@ import directions from '../../../interfaces/Direction';
     this.spriteWidth = 100;
     this.vSpeed = 10;
     this.hSpeed = 10;
-
   };
 
   public keyboardHandler(e: KeyboardEvent) {
-    //console.log('from Main hero keyboard handler', e);
     e.type === 'keydown' && e.key ==='ArrowRight' 
       && !this.checkIsThereTheGameBoarder(directions.right) && this.moveLeft();
     e.type === 'keydown' && e.key ==='ArrowLeft'
@@ -40,10 +37,6 @@ import directions from '../../../interfaces/Direction';
     e.type === 'keydown' && e.key ==='ArrowDown' 
       && !this.checkIsThereTheGameBoarder(directions.down)&& this.moveDown();
     e.type === 'keydown' && e.key ===' ' && this.fire();
-  }
-
-  public borderCollisionHandler(dir: directions) {
-  
   }
 
   fire() {
@@ -59,12 +52,8 @@ import directions from '../../../interfaces/Direction';
       [directions.left]: () => this.xpos<=0,
       [directions.right]: () => this.xpos + this.width>=this.game.width,
     }
-    // console.log('checkDirectionBoarder', workMatrix[dir]());
     return workMatrix[dir]();
   }
-
-
-
 }
 
 export default MainHero;

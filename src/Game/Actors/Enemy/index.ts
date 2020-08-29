@@ -23,16 +23,17 @@ class Enemy extends Actor {
   };
 
   public clock(){
-    this.ypos = this.ypos + this.vSpeed;
+    this.move();
   }
 
   public collisionHandler(o: GameFieldObject) {
     console.log('collision with:', o.type);
     if (o.type === gameObjTypes.bullet) this.game.removeObjectFromField(this);
-
   }
 
-
+  private move() {
+    this.ypos = this.ypos + this.vSpeed;
+  }
 }
 
 export default Enemy;
