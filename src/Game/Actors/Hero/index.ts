@@ -6,7 +6,6 @@ import MainGameUnit from '../../mainGameUnit';
 import directions from '../../../interfaces/Direction';
 
   class MainHero extends Actor{
-    
 
   constructor(game: MainGameUnit, xpos: number, ypos: number, ) {
     super(game);
@@ -49,7 +48,7 @@ import directions from '../../../interfaces/Direction';
 
   fire() {
     console.log('fire');
-    const fire = new Fire(this.game, this.xpos + 5, this.ypos - 30);
+    const fire = new Fire(this.game, this.xpos + 5, this.ypos - 42);
     this.game.addObjectOnField(fire);
   }
 
@@ -60,7 +59,7 @@ import directions from '../../../interfaces/Direction';
       [directions.left]: () => this.xpos<=0,
       [directions.right]: () => this.xpos + this.width>=this.game.width,
     }
-    console.log('checkDirectionBoarder', workMatrix[dir]());
+    // console.log('checkDirectionBoarder', workMatrix[dir]());
     return workMatrix[dir]();
   }
 

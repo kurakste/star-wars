@@ -24,9 +24,6 @@ class Actor {
   protected vSpeed:number = 0;
   protected collisions: GameFieldObject[] = [];
   protected game: Game; 
-  private isObstacleOnTheWay: boolean = false;
-  private obstacleDirection: directions;
-
 
   constructor(game: Game) {
     this.game = game;
@@ -60,7 +57,7 @@ class Actor {
   }
 
   public collisionHandler(o: GameFieldObject) {
-    console.log(`collision: ${this.type} - ${this.id}`);
+    // console.log(`collision: ${this.type} - ${this.id}`);
   }
   protected moveLeft() {
     this.xpos = this.xpos + this.hSpeed;

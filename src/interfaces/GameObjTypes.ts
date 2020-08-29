@@ -1,5 +1,5 @@
 enum GameObjectTypes {
-  mainGameActor, enemyTypeActor
+  mainGameActor, enemyTypeActor, bullet, 
 }
 
 export default GameObjectTypes;
