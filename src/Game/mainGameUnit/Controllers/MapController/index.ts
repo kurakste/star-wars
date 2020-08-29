@@ -2,7 +2,7 @@ import GameFieldObject from '../../../../interfaces/GameFieldObject';
 import myMap from '../../../../maps/testMap';
 import gameFieldObjectTypes from '../../../../interfaces/gameObjTypes';
 import IMapElement from '../../../../interfaces/IMapElement';
-import MainHero from '../../../Actors/Hero'
+import MainHero from '../../../Actors/DamageableActors/Hero'
 class MapController {
   map: GameFieldObject[] =[];
 

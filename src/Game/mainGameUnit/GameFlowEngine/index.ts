@@ -1,4 +1,4 @@
-import Enemy from '../../Actors/Enemy';
+import Enemy from '../../Actors/DamageableActors/Enemy';
 import Game from '../../mainGameUnit';
 
 class GameFlowEngine {

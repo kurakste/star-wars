@@ -6,14 +6,10 @@ import GameFieldObject from '../../../interfaces/GameFieldObject';
 
 class Fire extends Actor {
 
-  //public demage: number = 300;
+  public demage: number = 300;
   private direction: number;
   constructor(game: Game, xpos: number, ypos: number, direction: number) {
-    super(game);
-    this.width = 40;
-    this.height = 40;
-    this.xpos = xpos;
-    this.ypos = ypos;
+    super(game, xpos, ypos, 40, 40);
     this.subscribes = [Events.Clock, Events.Draw, Events.Collision ];
     this.type = GameObjTypes.bullet;
     this.spriteXOffset = 369

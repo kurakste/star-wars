@@ -1,5 +1,5 @@
 import MainGame from './Game/mainGameUnit';
-import Hero from './Game/Actors/Hero';
+import Hero from './Game/Actors/DamageableActors/Hero';
 
 (async function() {
   

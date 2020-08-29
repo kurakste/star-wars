@@ -6,7 +6,7 @@ import DrawController from './Controllers/DrawController';
 import MapController from './Controllers/MapController';
 import Events from '../../interfaces/Events';
 import GameFlowEngine from './GameFlowEngine';
-import Hero from '../Actors/Hero';
+import Hero from '../Actors/DamageableActors/Hero';
 import CollisionController from './Controllers/CollisionsController';
 
 class MainGame implements Game {

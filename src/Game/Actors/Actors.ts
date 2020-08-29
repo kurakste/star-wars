@@ -5,7 +5,6 @@ import imgPath from './hero_sprites.jpg';
 import GameFieldObject from '../../interfaces/GameFieldObject';
 import Game from '../mainGameUnit';
 import directions from '../../interfaces/Direction';
-
   
 class Actor {
   static spritesImg: HTMLImageElement;
@@ -25,12 +24,16 @@ class Actor {
   protected collisions: GameFieldObject[] = [];
   protected game: Game; 
 
-  constructor(game: Game) {
+  constructor(game: Game, xpos: number, ypos: number, width: number, height: number) {
     this.game = game;
+    this.xpos = xpos;
+    this.ypos = ypos;
+    this.width = 40;
+    this.height = 40;
+    this.subscribes = [ Events.Clock, Events.Draw, Events.Collision ];
     if (Actor.spritesImg === undefined) {
       Actor.spritesImg = new Image();
       Actor.spritesImg.src = imgPath;
-      console.log('img from constructor', Actor.spritesImg);
     }
     this.id = cryptoRandomString({length: 10});
   };
@@ -52,7 +55,7 @@ class Actor {
   }
 
   public borderCollisionHandler(dir: directions) {
-    console.log('border collision method', this);
+    // console.log('border collision method', this);
     this.game.removeObjectFromField(this);
   }
 
@@ -74,5 +77,6 @@ class Actor {
   protected moveUp() {
     this.ypos = this.ypos - this.vSpeed;
   }
+
 }
 export default Actor;
