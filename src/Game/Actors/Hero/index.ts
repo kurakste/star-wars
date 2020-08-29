@@ -44,12 +44,12 @@ import directions from '../../../interfaces/Direction';
   }
 
   public borderCollisionHandler(dir: directions) {
-    
+  
   }
 
   fire() {
     console.log('fire');
-    const fire = new Fire(this.game, this.xpos, this.ypos);
+    const fire = new Fire(this.game, this.xpos + 5, this.ypos - 30);
     this.game.addObjectOnField(fire);
   }
 
