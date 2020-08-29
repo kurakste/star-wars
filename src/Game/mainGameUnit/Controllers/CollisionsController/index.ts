@@ -58,7 +58,7 @@ class CollisionController extends Controller {
       bx0, by0, bx1, by1
     );
 
-    isCollision && console.log('collision', isCollision);//, o1, o2);
+    // isCollision && console.log('collision', isCollision);//, o1, o2);
     return isCollision;
   }
 

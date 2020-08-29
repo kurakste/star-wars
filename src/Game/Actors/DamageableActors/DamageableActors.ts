@@ -4,13 +4,13 @@ import gameObjTypes from '../../../interfaces/gameObjTypes';
 
 
 class DamageableActors extends Actor {
-
-
   protected health: number = 400;
+  
   protected getDemage(o: GameFieldObject) {
     this.health = this.health - o.demage;
     console.log('i got demage. Health is: ', this.health)
   }
+  
   protected checkHealthLogic() {
     (this.health<=0) && this.game.removeObjectFromField(this);
   }

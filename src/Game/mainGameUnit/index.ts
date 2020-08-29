@@ -49,12 +49,12 @@ class MainGame implements Game {
   }
 
   public addObjectOnField = (o: GameFieldObject): void => {
-    console.log('addObjectOnField', o.subscribes)
+    // console.log('addObjectOnField', o.subscribes)
     o.subscribes.map(el => this.subscriber(el, o)) 
  }
 
  public removeObjectFromField(o: GameFieldObject) {
-  console.log('removeObjectFromField', o.subscribes)
+  // console.log('removeObjectFromField', o.subscribes)
   o.subscribes.map(el => this.unSubscribe(el, o))
  }
 
@@ -69,7 +69,7 @@ class MainGame implements Game {
  }
 
   private subscriber(el:Events, obj:GameFieldObject){
-    console.log('subscriber', el, obj);
+    // console.log('subscriber', el, obj);
     const switcher = {
       [Events.Keyboard]: () => this.keyboardController.addNewEventListener(obj),
       [Events.Draw]: () => this.drawController.addNewEventListener(obj),

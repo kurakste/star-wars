@@ -60,6 +60,7 @@ class Actor {
   }
 
   public collisionHandler(o: GameFieldObject) {
+    console.log('COLLISION HANDLER');
     // console.log(`collision: ${this.type} - ${this.id}`);
   }
   protected moveLeft() {

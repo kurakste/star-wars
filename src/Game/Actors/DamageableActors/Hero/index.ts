@@ -1,10 +1,10 @@
 import Events from '../../../../interfaces/Events';
 import GameObjTypes from '../../../../interfaces/gameObjTypes';
-import Actor from '../../Actors';
+import DamageableActors from '../DamageableActors';
 import Fire from '../../Fire';
 import MainGameUnit from '../../../mainGameUnit';
 import directions from '../../../../interfaces/Direction';
-class MainHero extends Actor{
+class MainHero extends DamageableActors {
 
   constructor(game: MainGameUnit, xpos: number, ypos: number, ) {
     super(game, xpos, ypos, 50, 50);
