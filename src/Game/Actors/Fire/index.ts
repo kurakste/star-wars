@@ -1,12 +1,14 @@
-import Actor from "../../Actors";
-import Events from '../../../../interfaces/Events';
-import GameObjTypes from '../../../../interfaces/gameObjTypes';
-import Game from '../../../mainGameUnit';
-import GameFieldObject from '../../../../interfaces/GameFieldObject';
+import Actor from "../Actors";
+import Events from '../../../interfaces/Events';
+import GameObjTypes from '../../../interfaces/gameObjTypes';
+import Game from '../../mainGameUnit';
+import GameFieldObject from '../../../interfaces/GameFieldObject';
 
 class Fire extends Actor {
 
-  constructor(game: Game, xpos: number, ypos: number) {
+  //public demage: number = 300;
+  private direction: number;
+  constructor(game: Game, xpos: number, ypos: number, direction: number) {
     super(game);
     this.width = 40;
     this.height = 40;
@@ -19,10 +21,11 @@ class Fire extends Actor {
     this.spriteHeight = 40;
     this.spriteWidth = 40;
     this.vSpeed = 10;
+    this.direction = direction;
   }
 
   clock() {
-    this.ypos = this.ypos - this.vSpeed;
+    this.ypos = this.ypos - this.vSpeed * this.direction;
   }
 
   collisionHandler(o: GameFieldObject) {

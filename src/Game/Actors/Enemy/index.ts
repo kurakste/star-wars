@@ -4,7 +4,11 @@ import GameObjTypes from '../../../interfaces/gameObjTypes';
 import GameFieldObject from '../../../interfaces/GameFieldObject';
 import Game from '../../mainGameUnit';
 import gameObjTypes from '../../../interfaces/gameObjTypes';
+import Fire from '../Fire';
 class Enemy extends Actor {
+
+  private health: number = 400;
+  private clockBeforeFire:number = 50;
 
   constructor(game: Game, xpos: number, ypos: number) {
     super(game);
@@ -24,15 +28,43 @@ class Enemy extends Actor {
 
   public clock(){
     this.move();
+    this.generateFire()
   }
 
   public collisionHandler(o: GameFieldObject) {
     console.log('collision with:', o.type);
-    if (o.type === gameObjTypes.bullet) this.game.removeObjectFromField(this);
+    if (o.type === gameObjTypes.bullet) this.getDemage(o);
+    this.checkHealthLogic();
   }
 
   private move() {
     this.ypos = this.ypos + this.vSpeed;
+  }
+
+  private getDemage(o: GameFieldObject) {
+    try {
+      this.health = this.health - o.demage;
+      console.log('i got demage. Health is: ', this.health)
+    } catch(e) {
+      console.log('getDemage Error', e);
+    }
+  }
+  
+  private checkHealthLogic() {
+    (this.health<=0) && this.game.removeObjectFromField(this);
+  }
+
+  private generateFire(){
+    //console.log('genFire', this.clockBeforeFire);
+    if (this.clockBeforeFire<=0) {
+      console.log('genFire', this.clockBeforeFire);
+      const fire = new Fire(this.game, this.xpos, this.ypos + this.height + 2, -1);
+      this.game.addObjectOnField(fire);
+      this.clockBeforeFire = 50;
+
+    } else {
+      --this.clockBeforeFire;   
+    }
   }
 }
 

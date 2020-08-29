@@ -1,11 +1,15 @@
 import Events from '../../../interfaces/Events';
 import GameObjTypes from '../../../interfaces/gameObjTypes';
 import Actor from '../Actors';
-import Fire from './Fire';
+import Fire from '../Fire';
 import MainGameUnit from '../../mainGameUnit';
 import directions from '../../../interfaces/Direction';
+import GameFieldObject from '../../../interfaces/GameFieldObject';
 class MainHero extends Actor{
 
+  private health: number = 500; 
+  private shield: number = 200;
+  private shieldHealth: number = 300;
   constructor(game: MainGameUnit, xpos: number, ypos: number, ) {
     super(game);
     this.width = 50;
@@ -39,11 +43,19 @@ class MainHero extends Actor{
     e.type === 'keydown' && e.key ===' ' && this.fire();
   }
 
+  public borderCollisionHandler(dir: directions) {
+    // rewrite parent method;
+  }
+
   fire() {
     console.log('fire');
-    const fire = new Fire(this.game, this.xpos + 5, this.ypos - 42);
+    const fire = new Fire(this.game, this.xpos + 5, this.ypos - 42, 1);
     this.game.addObjectOnField(fire);
   }
+
+  private getDemage(o: GameFieldObject) {
+    
+  } 
 
   private checkIsThereTheGameBoarder(dir: directions) {
     const workMatrix = {

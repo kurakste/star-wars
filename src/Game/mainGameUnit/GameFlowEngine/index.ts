@@ -4,7 +4,7 @@ import Game from '../../mainGameUnit';
 class GameFlowEngine {
   private currentGameTime = 0;
   private lastEnemyBornTime: number;
-  private enemyBornPeriod = 200;
+  private enemyBornPeriod = 80;
   private game: Game;
   
   constructor(game: Game) {

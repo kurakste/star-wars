@@ -9,6 +9,7 @@ interface GameFieldObject  {
   ypos: number;
   width: number;
   height: number;
+  demage?: number;
 
   draw?: (o: any) => void;
   keyboardHandler?: (e: KeyboardEvent) => void;
