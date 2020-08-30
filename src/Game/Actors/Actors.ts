@@ -61,7 +61,7 @@ abstract class Actor {
       );
   }
 
-  public borderCollisionHandler(dir: directions): void {
+  public borderCollisionHandler(): void {
     // console.log('border collision method', this);
     this.game.removeObjectFromField(this);
   }

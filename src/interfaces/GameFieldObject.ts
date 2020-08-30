@@ -1,5 +1,4 @@
 import Events from './Events';
-import directions from './Direction';
 import gameObjTypes from './gameObjTypes';
 
 interface GameFieldObject  {
@@ -14,7 +13,7 @@ interface GameFieldObject  {
 
   draw?: (o: any) => void;
   keyboardHandler?: (e: KeyboardEvent) => void;
-  borderCollisionHandler: (dir: directions) => void;
+  borderCollisionHandler: () => void;
   collisionHandler: (o: GameFieldObject) => void;
   clock?:() => void;
 }

@@ -28,7 +28,7 @@ class MainHero extends DamageableActors {
     e.type === 'keydown' && e.key ===' ' && this.fire();
   }
 
-  public borderCollisionHandler(dir: directions): void {
+  public borderCollisionHandler(): void {
     // rewrite parent method;
   }
 

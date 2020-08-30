@@ -17,8 +17,8 @@ class CollisionController extends Controller {
     //console.log('collision controller', this.eventsListeners);
     this.eventsListeners.map((o, i, arr) => {
       if (this.checkObjectPositionForCollionWitGameFieldBorder(o)) {
-        const dir: directions = this.getBorderCollisionDirection(o);
-        o.borderCollisionHandler(dir);
+        //const dir: directions = this.getBorderCollisionDirection(o);
+        o.borderCollisionHandler();
       } 
         const shortArr = arr.slice(i+1);
         shortArr.map(oo => {

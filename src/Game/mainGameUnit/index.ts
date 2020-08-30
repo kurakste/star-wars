@@ -33,11 +33,12 @@ class MainGame implements Game {
     console.log('init game done');
   }
 
-  public clock = async () => {
+  public clock = async (): Promise<void> => {
     this.gameFlowEngine.gameTic(this.addObjectOnField);
     this.collisionController.eventHandler();
     this.clockController.eventHandler();
     this.drawController.draw();
+    return
     //await this.drawController.drawMap(this.mapController.getMap());
   }
 
