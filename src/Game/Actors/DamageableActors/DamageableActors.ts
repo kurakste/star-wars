@@ -2,7 +2,7 @@ import Actor from '../Actors';
 import GameFieldObject from '../../../interfaces/GameFieldObject';
 import gameObjTypes from '../../../interfaces/gameObjTypes';
 
-class DamageableActors extends Actor {
+abstract class DamageableActors extends Actor {
   protected health = 400;
   
   protected getDemage(o: GameFieldObject): void {

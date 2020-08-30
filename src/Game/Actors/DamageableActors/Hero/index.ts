@@ -4,18 +4,16 @@ import DamageableActors from '../DamageableActors';
 import Fire from '../../Fire';
 import MainGameUnit from '../../../mainGameUnit';
 import directions from '../../../../interfaces/Direction';
-import spriteMatrix from '../../spriteMatrix';
 
 class MainHero extends DamageableActors {
-  protected spriteMatrix = spriteMatrix;
+    type = gameObjTypes.mainGameActor;
 
   constructor(game: MainGameUnit, xpos: number, ypos: number, ) {
     super(game, xpos, ypos, 50, 50);
     this.subscribes.push(Events.Keyboard);
-    this.type = gameObjTypes.mainHeroBullet;
-    this.setSpriteMatrix(4);
     this.vSpeed = 10;
     this.hSpeed = 10;
+    this.setSpriteMatrix(this.spriteIndexInMatrix); 
   }
 
   public keyboardHandler(e: KeyboardEvent): void {
@@ -49,16 +47,7 @@ class MainHero extends DamageableActors {
     return workMatrix[dir]();
   }
 
-  private setSpriteMatrix(index: number) {
-    const tp = gameObjTypes.enemyBullet;
-    //const tp = this.type;
-    this.spriteXOffset = spriteMatrix[tp][index].sx;
-    this.spriteYOffset = spriteMatrix[tp][index].sy;
-    this.spriteWidth = spriteMatrix[tp][index].width;
-    this.spriteHeight = spriteMatrix[tp][index].hight;
-    this.width = spriteMatrix[tp][index].width / 4;
-    this.height = spriteMatrix[tp][index].hight/ 4;
-  }
+  
 }
 
 export default MainHero;

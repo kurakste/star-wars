@@ -5,16 +5,19 @@ import imgPath from './mainSprites.png';
 import GameFieldObject from '../../interfaces/GameFieldObject';
 import Game from '../mainGameUnit';
 import directions from '../../interfaces/Direction';
-  
-class Actor {
+import spriteMatrix from './spriteMatrix';
+
+abstract class Actor {
   static spritesImg: HTMLImageElement;
   public id: string;
-  public type: string;
+  public type: gameObjTypes;
   public subscribes: Events[] = [];
   public xpos: number;
   public ypos: number;
   public width: number;
   public height: number;
+  protected spriteMatrix = spriteMatrix;
+  protected spriteIndexInMatrix: number;
   protected spriteXOffset: number;
   protected spriteYOffset: number;
   protected spriteHeight: number;
@@ -27,6 +30,7 @@ class Actor {
   constructor(game: Game, xpos: number, ypos: number, width: number, height: number) {
     this.hSpeed = 0;
     this.vSpeed = 0;
+    this.spriteIndexInMatrix = 0;
     this.game = game;
     this.xpos = xpos;
     this.ypos = ypos;
@@ -79,6 +83,20 @@ class Actor {
   
   protected moveUp(): void {
     this.ypos = this.ypos - this.vSpeed;
+  }
+
+  protected setSpriteMatrix(index: number): void {
+    try {
+      console.log(this.type);
+      this.spriteXOffset = this.spriteMatrix[this.type][index].sx;
+      this.spriteYOffset = spriteMatrix[this.type][index].sy;
+      this.spriteWidth = spriteMatrix[this.type][index].width;
+      this.spriteHeight = spriteMatrix[this.type][index].hight;
+      this.width = spriteMatrix[this.type][index].width / 4;
+      this.height = spriteMatrix[this.type][index].hight/ 4;
+    } catch(e) {
+      console.log('error', this, e, spriteMatrix)
+    }
   }
 
 }

@@ -15,6 +15,7 @@ class Enemy extends DamageableActors {
     this.spriteWidth = 100;
     this.vSpeed = 5;
     this.hSpeed = 5;
+    this.setSpriteMatrix(this.spriteIndexInMatrix);
   }
 
   public clock(): void {
