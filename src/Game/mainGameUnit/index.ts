@@ -3,7 +3,6 @@ import KeyboardController from './Controllers/KeyboardController';
 import ClockController from './Controllers/ClockController'
 import GameFieldObject from '../../interfaces/GameFieldObject';
 import DrawController from './Controllers/DrawController';
-import MapController from './Controllers/MapController';
 import Events from '../../interfaces/Events';
 import GameFlowEngine from './GameFlowEngine';
 import Hero from '../Actors/DamageableActors/Hero';
@@ -15,7 +14,6 @@ class MainGame implements Game {
   private keyboardController = new KeyboardController();
   private clockController = new ClockController();
   protected drawController:DrawController;
-  private mapController = new MapController();
   private gameFlowEngine = new GameFlowEngine(this);
   private collisionController = new CollisionController(this);
   events = Events;
@@ -30,7 +28,6 @@ class MainGame implements Game {
     const can:HTMLCanvasElement = document.createElement('canvas');
     document.body.appendChild(can);
     this.drawController.init(can);
-    this.mapController.loadMap();
     const main = new Hero(this, 200,800);
     this.addObjectOnField(main);
     console.log('init game done');
@@ -53,7 +50,7 @@ class MainGame implements Game {
     o.subscribes.map(el => this.subscriber(el, o)) 
  }
 
- public removeObjectFromField(o: GameFieldObject) {
+ public removeObjectFromField(o: GameFieldObject): void {
   // console.log('removeObjectFromField', o.subscribes)
   o.subscribes.map(el => this.unSubscribe(el, o))
  }
