@@ -1,7 +1,7 @@
 import Events from '../../../../interfaces/Events';
 import gameObjTypes from '../../../../interfaces/gameObjTypes';
 import DamageableActors from '../DamageableActors';
-import Fire from '../../Fire';
+import Fire from '../../Fire/HeroFire';
 import MainGameUnit from '../../../mainGameUnit';
 import directions from '../../../../interfaces/Direction';
 
@@ -33,7 +33,7 @@ class MainHero extends DamageableActors {
   }
 
   fire(): void {
-    const fire = new Fire(this.game, this.xpos + 5, this.ypos - 42, 1);
+    const fire = new Fire(this.game, this.xpos + 5, this.ypos - 42);
     this.game.addObjectOnField(fire);
   }
 

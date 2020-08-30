@@ -1,7 +1,7 @@
 import DamageableActors from '../DamageableActors';
 import GameObjTypes from '../../../../interfaces/gameObjTypes';
 import Game from '../../../mainGameUnit';
-import Fire from '../../Fire';
+import Fire from '../../Fire/EnemyFire';
 class Enemy extends DamageableActors {
 
   private clockBeforeFire = 50;
@@ -31,7 +31,7 @@ class Enemy extends DamageableActors {
     //console.log('genFire', this.clockBeforeFire);
     if (this.clockBeforeFire<=0) {
       // console.log('genFire', this.clockBeforeFire);
-      const fire = new Fire(this.game, this.xpos, this.ypos + this.height + 2, -1);
+      const fire = new Fire(this.game, this.xpos, this.ypos + this.height + 2);
       this.game.addObjectOnField(fire);
       this.clockBeforeFire = 50;
 

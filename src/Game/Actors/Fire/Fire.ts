@@ -4,7 +4,7 @@ import GameObjTypes from '../../../interfaces/gameObjTypes';
 import Game from '../../mainGameUnit';
 import GameFieldObject from '../../../interfaces/GameFieldObject';
 
-class Fire extends Actor {
+abstract class Fire extends Actor {
 
   public demage: number;
   private direction: number;
@@ -12,11 +12,6 @@ class Fire extends Actor {
     super(game, xpos, ypos, 40, 40);
     this.demage = 200;
     this.subscribes = [Events.Clock, Events.Draw, Events.Collision ];
-    this.type = GameObjTypes.enemyBullet;
-    this.spriteXOffset = 369
-    this.spriteYOffset = 612;
-    this.spriteHeight = 40;
-    this.spriteWidth = 40;
     this.vSpeed = 10;
     this.direction = direction;
   }
