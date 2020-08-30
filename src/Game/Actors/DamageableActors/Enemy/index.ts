@@ -1,11 +1,10 @@
 import DamageableActors from '../DamageableActors';
-import Events from '../../../../interfaces/Events';
 import GameObjTypes from '../../../../interfaces/gameObjTypes';
 import Game from '../../../mainGameUnit';
 import Fire from '../../Fire';
 class Enemy extends DamageableActors {
 
-  private clockBeforeFire:number = 50;
+  private clockBeforeFire = 50;
 
   constructor(game: Game, xpos: number, ypos: number) {
     super(game, xpos, ypos, 50, 50);
@@ -16,9 +15,9 @@ class Enemy extends DamageableActors {
     this.spriteWidth = 100;
     this.vSpeed = 5;
     this.hSpeed = 5;
-  };
+  }
 
-  public clock(){
+  public clock(): void {
     this.move();
     this.generateFire()
   }

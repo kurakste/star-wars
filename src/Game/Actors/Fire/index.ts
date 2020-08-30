@@ -6,10 +6,11 @@ import GameFieldObject from '../../../interfaces/GameFieldObject';
 
 class Fire extends Actor {
 
-  public demage: number = 300;
+  public demage: number;
   private direction: number;
   constructor(game: Game, xpos: number, ypos: number, direction: number) {
     super(game, xpos, ypos, 40, 40);
+    this.demage = 200;
     this.subscribes = [Events.Clock, Events.Draw, Events.Collision ];
     this.type = GameObjTypes.bullet;
     this.spriteXOffset = 369
@@ -20,11 +21,11 @@ class Fire extends Actor {
     this.direction = direction;
   }
 
-  clock() {
+  clock(): void {
     this.ypos = this.ypos - this.vSpeed * this.direction;
   }
 
-  collisionHandler(o: GameFieldObject) {
+  collisionHandler(o: GameFieldObject): void {
     (o.type!== GameObjTypes.bullet) && this.game.removeObjectFromField(this);
   }
 }

@@ -20,28 +20,30 @@ class Actor {
   protected spriteYOffset: number;
   protected spriteHeight: number;
   protected spriteWidth: number;
-  protected hSpeed:number  = 0;
-  protected vSpeed:number = 0;
+  protected hSpeed:number;
+  protected vSpeed:number;
   protected collisions: GameFieldObject[] = [];
   protected game: Game; 
 
   constructor(game: Game, xpos: number, ypos: number, width: number, height: number) {
+    this.hSpeed = 0;
+    this.vSpeed = 0;
     this.game = game;
     this.xpos = xpos;
     this.ypos = ypos;
-    this.width = 40;
-    this.height = 40;
+    this.width = width;
+    this.height = height;
     this.subscribes = [ Events.Clock, Events.Draw, Events.Collision ];
     if (Actor.spritesImg === undefined) {
       Actor.spritesImg = new Image();
       Actor.spritesImg.src = imgPath;
     }
     this.id = cryptoRandomString({length: 10});
-  };
+  }
 
-  public clock(){}
+  public clock(): void { return }
 
-  public async draw(ctx: CanvasRenderingContext2D) {
+  public async draw(ctx: CanvasRenderingContext2D): Promise<void> {
     ctx.drawImage(
       Actor.spritesImg, 
       this.spriteXOffset, 
@@ -55,28 +57,27 @@ class Actor {
       );
   }
 
-  public borderCollisionHandler(dir: directions) {
+  public borderCollisionHandler(dir: directions): void {
     // console.log('border collision method', this);
     this.game.removeObjectFromField(this);
   }
 
-  public collisionHandler(o: GameFieldObject) {
-    console.log('COLLISION HANDLER');
+  public collisionHandler(o: GameFieldObject): void {
     // console.log(`collision: ${this.type} - ${this.id}`);
   }
-  protected moveLeft() {
+  protected moveLeft(): void {
     this.xpos = this.xpos + this.hSpeed;
   }
 
-  protected moveRight() {
+  protected moveRight(): void {
     this.xpos = this.xpos - this.hSpeed;
   }
   
-  protected moveDown() {
+  protected moveDown(): void {
     this.ypos = this.ypos + this.vSpeed;
   }
   
-  protected moveUp() {
+  protected moveUp(): void {
     this.ypos = this.ypos - this.vSpeed;
   }
 

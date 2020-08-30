@@ -47,7 +47,7 @@ class CollisionController extends Controller {
   }
 
 
-  protected checkObjectForCollision(o1: GameFieldObject, o2: GameFieldObject) {
+  protected checkObjectForCollision(o1: GameFieldObject, o2: GameFieldObject): boolean {
     const ax0 = o1.xpos, ay0 = o1.ypos, 
           ax1 = ax0 + o1.width, ay1 = ay0 + o1.height;
     const bx0 = o2.xpos, by0 = o2.ypos,

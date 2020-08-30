@@ -16,9 +16,9 @@ class MainHero extends DamageableActors {
     this.spriteWidth = 100;
     this.vSpeed = 10;
     this.hSpeed = 10;
-  };
+  }
 
-  public keyboardHandler(e: KeyboardEvent) {
+  public keyboardHandler(e: KeyboardEvent): void {
     e.type === 'keydown' && e.key ==='ArrowRight' 
       && !this.checkIsThereTheGameBoarder(directions.right) && this.moveLeft();
     e.type === 'keydown' && e.key ==='ArrowLeft'
@@ -30,11 +30,11 @@ class MainHero extends DamageableActors {
     e.type === 'keydown' && e.key ===' ' && this.fire();
   }
 
-  public borderCollisionHandler(dir: directions) {
+  public borderCollisionHandler(dir: directions): void {
     // rewrite parent method;
   }
 
-  fire() {
+  fire(): void {
     const fire = new Fire(this.game, this.xpos + 5, this.ypos - 42, 1);
     this.game.addObjectOnField(fire);
   }
