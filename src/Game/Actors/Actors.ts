@@ -5,6 +5,7 @@ import imgPath from './hero_sprites.jpg';
 import GameFieldObject from '../../interfaces/GameFieldObject';
 import Game from '../mainGameUnit';
 import directions from '../../interfaces/Direction';
+
   
 class Actor {
   static spritesImg: HTMLImageElement;

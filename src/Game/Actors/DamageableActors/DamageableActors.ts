@@ -2,7 +2,6 @@ import Actor from '../Actors';
 import GameFieldObject from '../../../interfaces/GameFieldObject';
 import gameObjTypes from '../../../interfaces/gameObjTypes';
 
-
 class DamageableActors extends Actor {
   protected health: number = 400;
   
