@@ -16,7 +16,10 @@ class DamageableActors extends Actor {
 
   public collisionHandler(o: GameFieldObject): void {
     console.log('collision with:', o.type);
-    if (o.type === gameObjTypes.bullet) this.getDemage(o);
+    if (
+      o.type === gameObjTypes.mainHeroBullet 
+        || 
+      o.type === gameObjTypes.enemyBullet) this.getDemage(o);
     this.checkHealthLogic();
   }
 }

@@ -1,19 +1,19 @@
 import Events from '../../../../interfaces/Events';
-import GameObjTypes from '../../../../interfaces/gameObjTypes';
+import gameObjTypes from '../../../../interfaces/gameObjTypes';
 import DamageableActors from '../DamageableActors';
 import Fire from '../../Fire';
 import MainGameUnit from '../../../mainGameUnit';
 import directions from '../../../../interfaces/Direction';
+import spriteMatrix from '../../spriteMatrix';
+
 class MainHero extends DamageableActors {
+  protected spriteMatrix = spriteMatrix;
 
   constructor(game: MainGameUnit, xpos: number, ypos: number, ) {
     super(game, xpos, ypos, 50, 50);
     this.subscribes.push(Events.Keyboard);
-    this.type = GameObjTypes.mainGameActor;
-    this.spriteXOffset = 0;
-    this.spriteYOffset = 0;
-    this.spriteHeight = 90;
-    this.spriteWidth = 100;
+    this.type = gameObjTypes.mainHeroBullet;
+    this.setSpriteMatrix(4);
     this.vSpeed = 10;
     this.hSpeed = 10;
   }
@@ -47,6 +47,17 @@ class MainHero extends DamageableActors {
       [directions.right]: () => this.xpos + this.width>=this.game.width,
     }
     return workMatrix[dir]();
+  }
+
+  private setSpriteMatrix(index: number) {
+    const tp = gameObjTypes.enemyBullet;
+    //const tp = this.type;
+    this.spriteXOffset = spriteMatrix[tp][index].sx;
+    this.spriteYOffset = spriteMatrix[tp][index].sy;
+    this.spriteWidth = spriteMatrix[tp][index].width;
+    this.spriteHeight = spriteMatrix[tp][index].hight;
+    this.width = spriteMatrix[tp][index].width / 4;
+    this.height = spriteMatrix[tp][index].hight/ 4;
   }
 }
 

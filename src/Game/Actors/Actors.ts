@@ -1,7 +1,7 @@
 import * as cryptoRandomString from 'crypto-random-string';
 import Events from '../../interfaces/Events';
-import GameObjTypes from '../../interfaces/gameObjTypes';
-import imgPath from './hero_sprites.jpg';
+import gameObjTypes from '../../interfaces/gameObjTypes';
+import imgPath from './mainSprites.png';
 import GameFieldObject from '../../interfaces/GameFieldObject';
 import Game from '../mainGameUnit';
 import directions from '../../interfaces/Direction';
@@ -9,7 +9,7 @@ import directions from '../../interfaces/Direction';
 class Actor {
   static spritesImg: HTMLImageElement;
   public id: string;
-  public type: GameObjTypes;
+  public type: string;
   public subscribes: Events[] = [];
   public xpos: number;
   public ypos: number;
@@ -36,6 +36,7 @@ class Actor {
     if (Actor.spritesImg === undefined) {
       Actor.spritesImg = new Image();
       Actor.spritesImg.src = imgPath;
+      console.log('img:', Actor.spritesImg);
     }
     this.id = cryptoRandomString({length: 10});
   }

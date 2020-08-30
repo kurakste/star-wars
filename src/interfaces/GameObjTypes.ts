@@ -1,5 +1,8 @@
-enum GameObjectTypes {
-  mainGameActor, enemyTypeActor, bullet, 
+enum gameObjectTypes {
+  mainGameActor = 'mainActor', 
+  enemyTypeActor = 'enemyActor', 
+  mainHeroBullet = 'mainHeroBullet',  
+  enemyBullet = 'enemyBullet'
 }
 
-export default GameObjectTypes;
+export default gameObjectTypes;

@@ -1,9 +1,8 @@
-import GameObjTypes from './gameObjTypes';
 import Events from './Events';
 import directions from './Direction';
 interface GameFieldObject  {
   id: string;
-  type: GameObjTypes;
+  type: string;
   subscribes: Events[];
   xpos: number;
   ypos: number;
