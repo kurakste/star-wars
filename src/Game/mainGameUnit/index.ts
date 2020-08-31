@@ -1,9 +1,9 @@
-import Game from '../../interfaces/IGame';
+import Game from '../Interfaces/IGame';
 import KeyboardController from './Controllers/KeyboardController';
 import ClockController from './Controllers/ClockController'
-import GameFieldObject from '../../interfaces/GameFieldObject';
+import GameFieldObject from '../Interfaces/GameFieldObject';
 import DrawController from './Controllers/DrawController';
-import Events from '../../interfaces/Events';
+import Events from '../Interfaces/Events';
 import GameFlowEngine from './GameFlowEngine';
 import Hero from '../Actors/DamageableActors/Hero';
 import CollisionController from './Controllers/CollisionsController';
@@ -26,7 +26,9 @@ class MainGame implements Game {
 
   public async initGame(): Promise<void> {
     const can:HTMLCanvasElement = document.createElement('canvas');
-    document.body.appendChild(can);
+    const gameDiv:HTMLElement = document.getElementById('game');
+    gameDiv.appendChild(can);
+    //document.body.appendChild(can);
     this.drawController.init(can);
     const main = new Hero(this, 200,800);
     this.addObjectOnField(main);

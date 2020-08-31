@@ -1,9 +1,9 @@
-import Events from '../../../../interfaces/Events';
-import gameObjTypes from '../../../../interfaces/gameObjTypes';
+import Events from '../../../Interfaces/Events';
+import gameObjTypes from '../../../Interfaces/gameObjTypes';
 import DamageableActors from '../DamageableActors';
 import Fire from '../../Fire/HeroFire';
 import MainGameUnit from '../../../mainGameUnit';
-import directions from '../../../../interfaces/Direction';
+import directions from '../../../Interfaces/Direction';
 
 class MainHero extends DamageableActors {
     type = gameObjTypes.mainGameActor;

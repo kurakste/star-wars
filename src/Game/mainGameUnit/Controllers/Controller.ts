@@ -1,4 +1,4 @@
-import GameFieldObject from '../../../interfaces/GameFieldObject';
+import GameFieldObject from '../../Interfaces/GameFieldObject';
 
 class Controller {
  eventsListeners:GameFieldObject[] = [];

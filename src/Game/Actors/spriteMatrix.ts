@@ -1,4 +1,4 @@
-import gameObjectType from '../../interfaces/gameObjTypes';
+import gameObjectType from '../Interfaces/gameObjTypes';
 
 const mainGameActor = [
   {sx: 50, sy: 50, width: 140, hight: 140},

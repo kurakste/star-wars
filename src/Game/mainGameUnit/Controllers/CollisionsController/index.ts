@@ -1,8 +1,8 @@
 import Controller from "../Controller";
-import GameFieldObject from '../../../../interfaces/GameFieldObject';
+import GameFieldObject from '../../../Interfaces/GameFieldObject';
 import Game from '../../../mainGameUnit';
 import checkCollision from './checkCollisionFunction';
-import directions from '../../../../interfaces/Direction';
+import directions from '../../../Interfaces/Direction';
 //import collides from "./checkCollisionFunction";
 
 class CollisionController extends Controller {

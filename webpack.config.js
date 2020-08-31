@@ -33,7 +33,8 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({ 
-      title: 'Star war' 
+      title: 'Star war',
+      template: './src/html/template.html'
     }),
   ],
   output: {

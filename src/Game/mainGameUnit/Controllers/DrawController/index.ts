@@ -1,5 +1,5 @@
 import Controller from '../Controller';
-import GameFieldObject from '../../../../interfaces/GameFieldObject';
+import GameFieldObject from '../../../Interfaces/GameFieldObject';
 class DrawController extends Controller {
   private readonly width: number;
   private readonly height: number;

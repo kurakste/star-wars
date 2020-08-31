@@ -1,5 +1,5 @@
 import DamageableActors from '../DamageableActors';
-import GameObjTypes from '../../../../interfaces/gameObjTypes';
+import GameObjTypes from '../../../Interfaces/gameObjTypes';
 import Game from '../../../mainGameUnit';
 import Fire from '../../Fire/EnemyFire';
 class Enemy extends DamageableActors {

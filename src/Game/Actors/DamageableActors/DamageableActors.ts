@@ -1,6 +1,6 @@
 import Actor from '../Actors';
-import GameFieldObject from '../../../interfaces/GameFieldObject';
-import gameObjTypes from '../../../interfaces/gameObjTypes';
+import GameFieldObject from '../../Interfaces/GameFieldObject';
+import gameObjTypes from '../../Interfaces/gameObjTypes';
 
 abstract class DamageableActors extends Actor {
   protected health = 400;

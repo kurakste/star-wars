@@ -1,8 +1,8 @@
 import Actor from "../Actors";
-import Events from '../../../interfaces/Events';
-import GameObjTypes from '../../../interfaces/gameObjTypes';
+import Events from '../../Interfaces/Events';
+import GameObjTypes from '../../Interfaces/gameObjTypes';
 import Game from '../../mainGameUnit';
-import GameFieldObject from '../../../interfaces/GameFieldObject';
+import GameFieldObject from '../../Interfaces/GameFieldObject';
 
 abstract class Fire extends Actor {
 

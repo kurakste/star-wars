@@ -1,6 +1,6 @@
 import Fire from './Fire';
 import Game from '../../mainGameUnit';
-import gameObjTypes from '../../../interfaces/gameObjTypes';
+import gameObjTypes from '../../Interfaces/gameObjTypes';
 
 
 class EnemyFire extends Fire {
