@@ -1,11 +1,11 @@
 import Actor from '../Actors';
-import GameFieldObject from '../../Interfaces/GameFieldObject';
+import IGameFieldObject from '../../Interfaces/GameFieldObject';
 import gameObjTypes from '../../Interfaces/gameObjTypes';
 
 abstract class DamageableActors extends Actor {
-  protected health = 400;
+  public health = 400;
   
-  protected getDemage(o: GameFieldObject): void {
+  protected getDemage(o: IGameFieldObject): void {
     this.health = this.health - o.demage;
     console.log('i got demage. Health is: ', this.health)
   }
@@ -14,7 +14,7 @@ abstract class DamageableActors extends Actor {
     (this.health<=0) && this.game.removeObjectFromField(this);
   }
 
-  public collisionHandler(o: GameFieldObject): void {
+  public collisionHandler(o: IGameFieldObject): void {
     console.log('collision with:', o.type);
     if (
       o.type === gameObjTypes.mainHeroBullet 

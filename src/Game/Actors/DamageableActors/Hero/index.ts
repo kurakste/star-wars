@@ -4,6 +4,8 @@ import DamageableActors from '../DamageableActors';
 import Fire from '../../Fire/HeroFire';
 import MainGameUnit from '../../../mainGameUnit';
 import directions from '../../../Interfaces/Direction';
+import IGameFieldObject from '../../../Interfaces/GameFieldObject';
+
 
 class MainHero extends DamageableActors {
     type = gameObjTypes.mainGameActor;
@@ -14,6 +16,8 @@ class MainHero extends DamageableActors {
     this.vSpeed = 10;
     this.hSpeed = 10;
     this.setSpriteMatrix(this.spriteIndexInMatrix); 
+    this.health = 900;
+    this.game.ScoreBoard.setHeathValue(this.health)
   }
 
   public keyboardHandler(e: KeyboardEvent): void {
@@ -47,7 +51,12 @@ class MainHero extends DamageableActors {
     return workMatrix[dir]();
   }
 
+  protected getDemage(o: IGameFieldObject): void {
+    super.getDemage(o);
+    console.log('demage from getDemage', o);
+    this.game.ScoreBoard.setHeathValue(this.health);
   
+  }
 }
 
 export default MainHero;

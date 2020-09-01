@@ -10,6 +10,7 @@ interface GameFieldObject  {
   width: number;
   height: number;
   demage?: number;
+  health?: number;
 
   draw?: (o: any) => void;
   keyboardHandler?: (e: KeyboardEvent) => void;

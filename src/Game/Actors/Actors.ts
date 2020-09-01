@@ -2,9 +2,8 @@ import * as cryptoRandomString from 'crypto-random-string';
 import Events from '../Interfaces/Events';
 import gameObjTypes from '../Interfaces/gameObjTypes';
 import imgPath from './mainSprites.png';
-import GameFieldObject from '../Interfaces/GameFieldObject';
+import IGameFieldObject from '../Interfaces/GameFieldObject';
 import Game from '../mainGameUnit';
-import directions from '../Interfaces/Direction';
 import spriteMatrix from './spriteMatrix';
 
 abstract class Actor {
@@ -24,7 +23,7 @@ abstract class Actor {
   protected spriteWidth: number;
   protected hSpeed:number;
   protected vSpeed:number;
-  protected collisions: GameFieldObject[] = [];
+  protected collisions: IGameFieldObject[] = [];
   protected game: Game; 
 
   constructor(game: Game, xpos: number, ypos: number, width: number, height: number) {
@@ -66,7 +65,7 @@ abstract class Actor {
     this.game.removeObjectFromField(this);
   }
 
-  public collisionHandler(o: GameFieldObject): void {
+  public collisionHandler(o: IGameFieldObject): void {
     // console.log(`collision: ${this.type} - ${this.id}`);
   }
   protected moveLeft(): void {
