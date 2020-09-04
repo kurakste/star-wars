@@ -10,15 +10,16 @@ import CollisionController from './Controllers/CollisionsController';
 import ScoreBoard from './ScoreBoard';
 
 class MainGame implements Game {
+  public events = Events;
   public readonly height: number;
   public readonly width: number;
+  public gameLevel: number;
   public gameFlowEngine = new GameFlowEngine(this);
   public ScoreBoard = new ScoreBoard()
   private keyboardController = new KeyboardController();
   private clockController = new ClockController();
   protected drawController:DrawController;
   private collisionController = new CollisionController(this);
-  events = Events;
   
   constructor(width: number, height: number) {
     this.width = width;
@@ -28,10 +29,7 @@ class MainGame implements Game {
 
   public async initGame(): Promise<void> {
     this.addVisualElementsOnHtml();
-    const main = new Hero(this, 200,800);
-    this.addObjectOnField(main);
-    this.keyboardController.addGameFlowEngine(this.gameFlowEngine);
-
+    this.startGame();
     console.log('init game done');
   }
 
@@ -42,7 +40,6 @@ class MainGame implements Game {
     this.drawController.draw();
     return
   }
-
 
   public keyboardHandler(e: KeyboardEvent): void {
     this.keyboardController.eventHandler(e);  
@@ -58,6 +55,12 @@ class MainGame implements Game {
 
  public gameOver(): void {
    return
+ }
+
+ private startGame() {
+  const main = new Hero(this, 200,800);
+  this.addObjectOnField(main);
+  this.keyboardController.addGameFlowEngine(this.gameFlowEngine);
  }
 
  private unSubscribe(el: Events, obj: GameFieldObject) {
