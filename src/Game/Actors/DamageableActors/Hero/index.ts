@@ -4,7 +4,7 @@ import DamageableActors from '../DamageableActors';
 import Fire from '../../Fire/HeroFire';
 import MainGameUnit from '../../../mainGameUnit';
 import directions from '../../../Interfaces/Direction';
-import IGameFieldObject from '../../../Interfaces/GameFieldObject';
+import IGameFieldObject from '../../../Interfaces/IGameFieldObject';
 
 
 class MainHero extends DamageableActors {
@@ -51,12 +51,18 @@ class MainHero extends DamageableActors {
     return workMatrix[dir]();
   }
 
+  private sendGameOver() {
+    this.game.gameFlowEngine.gameOver();
+  }
+
   protected getDemage(o: IGameFieldObject): void {
     super.getDemage(o);
     console.log('demage from getDemage', o);
     this.game.ScoreBoard.setHeathValue(this.health);
-  
+    (this.health<=0) && this.sendGameOver();
   }
+
+
 }
 
 export default MainHero;

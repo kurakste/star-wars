@@ -1,7 +1,7 @@
 import Events from './Events';
 import gameObjTypes from './gameObjTypes';
 
-interface GameFieldObject  {
+interface IGameFieldObject  {
   id: string;
   type: gameObjTypes;
   subscribes: Events[];
@@ -15,8 +15,8 @@ interface GameFieldObject  {
   draw?: (o: any) => void;
   keyboardHandler?: (e: KeyboardEvent) => void;
   borderCollisionHandler: () => void;
-  collisionHandler: (o: GameFieldObject) => void;
+  collisionHandler: (o: any) => void;
   clock?:() => void;
 }
 
-export default GameFieldObject;
+export default IGameFieldObject;

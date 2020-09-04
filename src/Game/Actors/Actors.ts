@@ -2,7 +2,7 @@ import * as cryptoRandomString from 'crypto-random-string';
 import Events from '../Interfaces/Events';
 import gameObjTypes from '../Interfaces/gameObjTypes';
 import imgPath from './mainSprites.png';
-import IGameFieldObject from '../Interfaces/GameFieldObject';
+import IGameFieldObject from '../Interfaces/IGameFieldObject';
 import Game from '../mainGameUnit';
 import spriteMatrix from './spriteMatrix';
 

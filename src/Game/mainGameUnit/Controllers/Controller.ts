@@ -1,15 +1,16 @@
-import GameFieldObject from '../../Interfaces/GameFieldObject';
+import IGameFieldObject from '../../Interfaces/IGameFieldObject';
+import IGameFlowEngine from '../../Interfaces/IGameFlowEngine';
 
 class Controller {
- eventsListeners:GameFieldObject[] = [];
+ eventsListeners:(IGameFieldObject)[] = [];
 
-  addNewEventListener(o:GameFieldObject): void {
+  addNewEventListener(o:IGameFieldObject): void {
     this.eventsListeners.push(o);
   }
   
   eventHandler(e: any): void { return }
 
-  removeEventListener(o:GameFieldObject): void {
+  removeEventListener(o:IGameFieldObject): void {
     this.eventsListeners = this.eventsListeners.filter(el=> el.id !== o.id);
   }
 }

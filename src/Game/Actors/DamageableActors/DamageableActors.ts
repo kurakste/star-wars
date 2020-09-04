@@ -1,5 +1,5 @@
 import Actor from '../Actors';
-import IGameFieldObject from '../../Interfaces/GameFieldObject';
+import IGameFieldObject from '../../Interfaces/IGameFieldObject';
 import gameObjTypes from '../../Interfaces/gameObjTypes';
 
 abstract class DamageableActors extends Actor {
