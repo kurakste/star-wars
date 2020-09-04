@@ -15,25 +15,28 @@ class GameFlowEngine {
     this.lastEnemyBornTime = 0;
   }
 
-  public gameTic(addObject: CallableFunction): void {
+  public gameTic(): void {
     this.currentGameTime = this.currentGameTime + 1;
-    this.addEnemy(addObject);
+    this.addEnemyLogic();
   }
 
   public keyboardHandler(e: KeyboardEvent): void {
     return
   }
   // TODO: ---
-  public gameOver(): void { return }
+  public gameOver(): void {
+    console.log('Game over'); 
+    this.game.gameOver();
+  }
   // TODO: --- 
   public restartGame(): void { return }
 
-  private addEnemy(cb: CallableFunction): void {
+  private addEnemyLogic(): void {
     if(this.currentGameTime - this.lastEnemyBornTime >=this.enemyBornPeriod) {
       this.lastEnemyBornTime = this.currentGameTime;
       const xpos = Math.random()*400;
       const enemy = new Enemy(this.game, xpos, 20);
-      cb(enemy);
+      this.game.addObjectOnField(enemy);
     }
   }
 

@@ -36,12 +36,13 @@ class MainGame implements Game {
   }
 
   public clock = async (): Promise<void> => {
-    this.gameFlowEngine.gameTic(this.addObjectOnField);
+    this.gameFlowEngine.gameTic();
     this.collisionController.eventHandler();
     this.clockController.eventHandler();
     this.drawController.draw();
     return
   }
+
 
   public keyboardHandler(e: KeyboardEvent): void {
     this.keyboardController.eventHandler(e);  
@@ -53,6 +54,10 @@ class MainGame implements Game {
 
  public removeObjectFromField(o: GameFieldObject): void {
   o.subscribes.map(el => this.unSubscribe(el, o))
+ }
+
+ public gameOver(): void {
+   return
  }
 
  private unSubscribe(el: Events, obj: GameFieldObject) {

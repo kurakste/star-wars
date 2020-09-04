@@ -15,7 +15,7 @@ abstract class DamageableActors extends Actor {
   }
 
   public collisionHandler(o: IGameFieldObject): void {
-    console.log('collision with:', o.type);
+    // console.log('collision with:', o.type);
     if (
       o.type === gameObjTypes.mainHeroBullet 
         || 
