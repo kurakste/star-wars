@@ -23,7 +23,7 @@ class GameFlowEngine {
   public keyboardHandler(e: KeyboardEvent): void {
     e.key === 'n' 
       &&  e.type ==='keyup' 
-        && console.log('keyboard in gameFlow \'n\' is pressed', e);
+        && this.gameOver();
   }
   // TODO: ---
   public gameOver(): void {

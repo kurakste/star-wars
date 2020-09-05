@@ -4,7 +4,6 @@ class ScoreBoard {
   score: HTMLElement
   init(div: HTMLElement): void {
     const divWrap = document.createElement('div');
-    //divWrap.style.float = 'left';
     divWrap.style.width = '100%'
     const healthCapture = document.createElement('div');
     healthCapture.innerHTML = "health:";

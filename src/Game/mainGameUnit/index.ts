@@ -13,6 +13,7 @@ class MainGame implements Game {
   public events = Events;
   public readonly height: number;
   public readonly width: number;
+  public readonly canvasOnHtml: HTMLCanvasElement;
   public gameLevel: number;
   public gameFlowEngine = new GameFlowEngine(this);
   public ScoreBoard = new ScoreBoard()
@@ -24,11 +25,16 @@ class MainGame implements Game {
   constructor(width: number, height: number) {
     this.width = width;
     this.height = height;
+    this.canvasOnHtml = document.createElement('canvas');
+    const gameDiv:HTMLElement = document.getElementById('game');
+    gameDiv.appendChild(this.canvasOnHtml);
     this.drawController = new DrawController(width, height);
+    const scoreDiv: HTMLElement = document.getElementById('score');
+    this.ScoreBoard.init(scoreDiv);
   }
 
   public async initGame(): Promise<void> {
-    this.addVisualElementsOnHtml();
+    this.drawController.init(this.canvasOnHtml);
     this.startGame();
     console.log('init game done');
   }
@@ -54,13 +60,27 @@ class MainGame implements Game {
  }
 
  public gameOver(): void {
-   return
+   (async function(cont) {
+     cont.resetGame();
+     await cont.initGame()
+     cont.startGame();
+   })(this);
  }
 
  private startGame() {
+  //this.initGame();
+  this.keyboardController.addGameFlowEngine(this.gameFlowEngine);
   const main = new Hero(this, 200,800);
   this.addObjectOnField(main);
-  this.keyboardController.addGameFlowEngine(this.gameFlowEngine);
+ }
+
+ private resetGame() {
+  this.gameFlowEngine = new GameFlowEngine(this);
+  this.drawController = new DrawController(this.width, this.height);
+  // this.ScoreBoard = new ScoreBoard()
+  this.keyboardController = new KeyboardController();
+  this.clockController = new ClockController();
+  this.collisionController = new CollisionController(this);
  }
 
  private unSubscribe(el: Events, obj: GameFieldObject) {
@@ -84,14 +104,6 @@ class MainGame implements Game {
    switcher[el]();
   }
 
-  private addVisualElementsOnHtml() {
-    const can:HTMLCanvasElement = document.createElement('canvas');
-    const gameDiv:HTMLElement = document.getElementById('game');
-    gameDiv.appendChild(can);
-    this.drawController.init(can);
-    const scoreDiv: HTMLElement = document.getElementById('score');
-    this.ScoreBoard.init(scoreDiv);
-  }
 }
 
 export default MainGame;
