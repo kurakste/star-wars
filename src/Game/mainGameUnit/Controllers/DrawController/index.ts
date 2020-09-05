@@ -11,18 +11,25 @@ class DrawController extends Controller {
     this.height = height;
   }
 
-  public init(can: HTMLCanvasElement) {
-    can.width = this.width; 
-    can.height = this.height; 
-    can.style.background = 'black';
-    this.ctx = can.getContext('2d');
-    console.log('init', can, this);
+  public init(can: HTMLCanvasElement):void {
+    try {
+      can.width = this.width; 
+      can.height = this.height; 
+      can.style.background = 'black';
+      const ctx = can.getContext('2d');
+      if (!ctx) throw new Error('Something went wrong with getContext in DrawController');
+      this.ctx = ctx;
+      console.log('init', can, this);
+    } catch(e) {
+      console.log(e);
+    }
   }
 
   public async draw(): Promise<void> {
     this.ctx.clearRect(0,0, this.width, this.height)
-    //console.log('DrawController, draw', this.eventsListeners);
-    this.eventsListeners.map(o => o.draw(this.ctx));
+    this.eventsListeners.map(o => {
+      o.draw && o.draw(this.ctx);
+    });
   }
 
   public async drawMap(_map: GameFieldObject[]): Promise<void> {

@@ -5,7 +5,9 @@ class KeyboardController extends Controller {
   gameFlowEngine: IGameFlowEngine;
   eventHandler(e: KeyboardEvent): void {
     // console.log('from KeyboardController', e);
-    this.eventsListeners.map(o => o.keyboardHandler(e));
+    this.eventsListeners.map(o => {
+      o.keyboardHandler && o.keyboardHandler(e);
+    });
     this.gameFlowEngine.keyboardHandler(e);
     
   }

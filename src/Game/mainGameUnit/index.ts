@@ -23,14 +23,21 @@ class MainGame implements Game {
   private collisionController = new CollisionController(this);
   
   constructor(width: number, height: number) {
-    this.width = width;
-    this.height = height;
-    this.canvasOnHtml = document.createElement('canvas');
-    const gameDiv:HTMLElement = document.getElementById('game');
-    gameDiv.appendChild(this.canvasOnHtml);
-    this.drawController = new DrawController(width, height);
-    const scoreDiv: HTMLElement = document.getElementById('score');
-    this.ScoreBoard.init(scoreDiv);
+    try {
+      this.width = width;
+      this.height = height;
+      this.canvasOnHtml = document.createElement('canvas'); 
+      const gameDiv:HTMLElement|null= document.getElementById('game');
+      if (!gameDiv) throw new Error('Cant find element #game in html');
+      gameDiv.appendChild(this.canvasOnHtml);
+      this.drawController = new DrawController(width, height);
+      const scoreDiv: HTMLElement | null = document.getElementById('score');
+      if (!scoreDiv) throw new Error('Cant find element #score in html');
+      this.ScoreBoard.init(scoreDiv);
+
+    } catch(e) {
+      console.log(e);
+    }
   }
 
   public async initGame(): Promise<void> {
@@ -60,10 +67,10 @@ class MainGame implements Game {
  }
 
  public gameOver(): void {
-   (async function(cont) {
-     cont.resetGame();
-     await cont.initGame()
-     cont.startGame();
+   (async function(ctx) {
+     ctx.resetGame();
+     await ctx.initGame()
+     ctx.startGame();
    })(this);
  }
 

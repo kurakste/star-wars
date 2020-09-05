@@ -2,6 +2,7 @@
   "compilerOptions": {
     "outDir": "./dist/",
     "noImplicitAny": true,
+    "strictNullChecks": true,
     "module": "CommonJS",
     "target": "es5",
     "jsx": "react",
