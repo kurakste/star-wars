@@ -6,8 +6,10 @@ abstract class DamageableActors extends Actor {
   public health = 400;
   
   protected getDemage(o: IGameFieldObject): void {
-    this.health = this.health - o.demage;
-    console.log('i got demage. Health is: ', this.health)
+    if (o.demage) {
+      this.health = this.health - o.demage;
+      console.log('i got demage. Health is: ', this.health);
+    }
   }
   
   protected checkHealthLogic(): void {
