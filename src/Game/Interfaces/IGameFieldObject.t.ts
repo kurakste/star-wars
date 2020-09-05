@@ -1,5 +1,6 @@
 import Events from './Events';
 import gameObjTypes from './gameObjTypes';
+import IActorViewObject from './IActorViewObject';
 
 interface IGameFieldObject  {
   id: string;
@@ -16,7 +17,8 @@ interface IGameFieldObject  {
   keyboardHandler?: (e: KeyboardEvent) => void;
   borderCollisionHandler: () => void;
   collisionHandler: (o: any) => void;
-  clock?:() => void;
+  clock:() => void;
+  getActorViewObject: () => IActorViewObject;
 }
 
 export default IGameFieldObject;

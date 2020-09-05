@@ -2,9 +2,10 @@ import * as cryptoRandomString from 'crypto-random-string';
 import Events from '../Interfaces/Events';
 import gameObjTypes from '../Interfaces/gameObjTypes';
 import imgPath from './mainSprites.png';
-import IGameFieldObject from '../Interfaces/IGameFieldObject';
 import Game from '../mainGameUnit';
 import spriteMatrix from './spriteMatrix';
+import IGameFieldObject from '../Interfaces/IGameFieldObject.t';
+import IActorViewObject from '../Interfaces/IActorViewObject';
 
 abstract class Actor {
   static spritesImg: HTMLImageElement;
@@ -46,18 +47,17 @@ abstract class Actor {
 
   public clock(): void { return }
 
-  public async draw(ctx: CanvasRenderingContext2D): Promise<void> {
-    ctx.drawImage(
-      Actor.spritesImg, 
-      this.spriteXOffset, 
-      this.spriteYOffset, 
-      this.spriteWidth, 
-      this.spriteHeight,
-      this.xpos, 
-      this.ypos, 
-      this.width, 
-      this.height
-      );
+  public getActorViewObject(): IActorViewObject {
+      return {
+        spriteXOffset: this.spriteXOffset, 
+        spriteYOffset: this.spriteYOffset, 
+        spriteWidth: this.spriteWidth, 
+        spriteHeight: this.spriteHeight,
+        xpos: this.xpos, 
+        ypos: this.ypos, 
+        imageWidth: this.width, 
+        imageHeight: this.height
+      }
   }
 
   public borderCollisionHandler(): void {
@@ -66,7 +66,7 @@ abstract class Actor {
   }
 
   public collisionHandler(o: IGameFieldObject): void {
-    // console.log(`collision: ${this.type} - ${this.id}`);
+    console.log(`collision: ${this.type} - ${this.id} with:`, o);
   }
   protected moveLeft(): void {
     this.xpos = this.xpos + this.hSpeed;

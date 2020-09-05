@@ -4,7 +4,7 @@ import DamageableActors from '../DamageableActors';
 import Fire from '../../Fire/HeroFire';
 import MainGameUnit from '../../../mainGameUnit';
 import directions from '../../../Interfaces/Direction';
-import IGameFieldObject from '../../../Interfaces/IGameFieldObject';
+import IGameFieldObject from '../../../Interfaces/IGameFieldObject.t';
 
 
 class MainHero extends DamageableActors {

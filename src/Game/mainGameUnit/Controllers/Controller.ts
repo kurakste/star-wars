@@ -1,5 +1,4 @@
-import IGameFieldObject from '../../Interfaces/IGameFieldObject';
-import IGameFlowEngine from '../../Interfaces/IGameFlowEngine';
+import IGameFieldObject from '../../Interfaces/IGameFieldObject.t';
 
 class Controller {
  eventsListeners:(IGameFieldObject)[] = [];

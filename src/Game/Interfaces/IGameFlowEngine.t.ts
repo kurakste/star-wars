@@ -1,4 +1,4 @@
-import IGameFieldObject from './IGameFieldObject';
+import IGameFieldObject from "./IGameFieldObject.t";
 
 interface IGameFlowEngine  {
   id: string;

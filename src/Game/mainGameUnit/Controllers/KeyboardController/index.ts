@@ -1,5 +1,5 @@
 import Controller from '../Controller';
-import IGameFlowEngine from '../../../Interfaces/IGameFlowEngine';
+import IGameFlowEngine from '../../../Interfaces/IGameFlowEngine.t';
 
 class KeyboardController extends Controller {
   gameFlowEngine: IGameFlowEngine;
