@@ -19,7 +19,6 @@ class MainGame implements Game {
   public gameFlowEngine = new GameFlowEngine(this);
   public gameState = new GameState(this);
   public scoreBoard = new ScoreBoard();
-  private gameIsPaused = false;
   private keyboardController = new KeyboardController();
   private clockController = new ClockController();
   protected drawController: DrawController;
@@ -92,7 +91,6 @@ class MainGame implements Game {
     this.clockController.clear();
     this.collisionController.clear();
   }
-
 
   private unSubscribe(el: Events, obj: GameFieldObject) {
     const switcher = {
