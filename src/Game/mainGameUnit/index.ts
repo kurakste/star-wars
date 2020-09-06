@@ -67,11 +67,13 @@ class MainGame implements Game {
  }
 
  public gameOver(): void {
-   (async function(ctx) {
-     ctx.resetGame();
-     await ctx.initGame()
-     ctx.startGame();
-   })(this);
+  //  (async function(ctx) {
+  //    ctx.resetGame();
+  //    await ctx.initGame()
+  //    ctx.startGame.apply(ctx);
+  //  })(this);
+  this.resetGame();
+  this.startGame();
  }
 
  private startGame() {
@@ -82,12 +84,11 @@ class MainGame implements Game {
  }
 
  private resetGame() {
-  this.gameFlowEngine = new GameFlowEngine(this);
-  this.drawController = new DrawController(this.width, this.height);
+  this.drawController.clear();
   // this.ScoreBoard = new ScoreBoard()
-  this.keyboardController = new KeyboardController();
-  this.clockController = new ClockController();
-  this.collisionController = new CollisionController(this);
+  this.keyboardController.clear();
+  this.clockController.clear();
+  this.collisionController.clear();
  }
 
  private unSubscribe(el: Events, obj: GameFieldObject) {
