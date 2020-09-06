@@ -67,17 +67,11 @@ class MainGame implements Game {
  }
 
  public gameOver(): void {
-  //  (async function(ctx) {
-  //    ctx.resetGame();
-  //    await ctx.initGame()
-  //    ctx.startGame.apply(ctx);
-  //  })(this);
   this.resetGame();
   this.startGame();
  }
 
  private startGame() {
-  //this.initGame();
   this.keyboardController.addGameFlowEngine(this.gameFlowEngine);
   const hero = new Hero(this, 200,800);
   this.addObjectOnField(hero);
@@ -85,7 +79,6 @@ class MainGame implements Game {
 
  private resetGame() {
   this.drawController.clear();
-  // this.ScoreBoard = new ScoreBoard()
   this.keyboardController.clear();
   this.clockController.clear();
   this.collisionController.clear();
@@ -102,7 +95,6 @@ class MainGame implements Game {
  }
 
   private subscriber(el:Events, obj:GameFieldObject){
-    // console.log('subscriber', el, obj);
     const switcher = {
       [Events.Keyboard]: () => this.keyboardController.addNewEventListener(obj),
       [Events.Draw]: () => this.drawController.addNewEventListener(obj),
