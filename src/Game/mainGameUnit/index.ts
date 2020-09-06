@@ -16,26 +16,26 @@ class MainGame implements Game {
   public readonly canvasOnHtml: HTMLCanvasElement;
   public gameLevel: number;
   public gameFlowEngine = new GameFlowEngine(this);
-  public ScoreBoard = new ScoreBoard()
+  public ScoreBoard = new ScoreBoard();
+  private gameIsPaused = false;
   private keyboardController = new KeyboardController();
   private clockController = new ClockController();
-  protected drawController:DrawController;
+  protected drawController: DrawController;
   private collisionController = new CollisionController(this);
-  
+
   constructor(width: number, height: number) {
     try {
       this.width = width;
       this.height = height;
-      this.canvasOnHtml = document.createElement('canvas'); 
-      const gameDiv:HTMLElement|null= document.getElementById('game');
+      this.canvasOnHtml = document.createElement('canvas');
+      const gameDiv: HTMLElement | null = document.getElementById('game');
       if (!gameDiv) throw new Error('Cant find element #game in html');
       gameDiv.appendChild(this.canvasOnHtml);
       this.drawController = new DrawController(width, height);
       const scoreDiv: HTMLElement | null = document.getElementById('score');
       if (!scoreDiv) throw new Error('Cant find element #score in html');
       this.ScoreBoard.init(scoreDiv);
-
-    } catch(e) {
+    } catch (e) {
       console.log(e);
     }
   }
@@ -47,6 +47,7 @@ class MainGame implements Game {
   }
 
   public clock = async (): Promise<void> => {
+    if (this.gameIsPaused) return;
     this.gameFlowEngine.gameTic();
     this.collisionController.eventHandler();
     this.clockController.eventHandler();
@@ -55,53 +56,59 @@ class MainGame implements Game {
   }
 
   public keyboardHandler(e: KeyboardEvent): void {
-    this.keyboardController.eventHandler(e);  
+    if (e.type === 'keyup' && e.key === 'p') this.gamePauseSwitch();
+    this.keyboardController.eventHandler(e);
   }
 
   public addObjectOnField = (o: GameFieldObject): void => {
-    o.subscribes.map(el => this.subscriber(el, o)) 
- }
+    o.subscribes.map(el => this.subscriber(el, o))
+  }
 
- public removeObjectFromField(o: GameFieldObject): void {
-  o.subscribes.map(el => this.unSubscribe(el, o))
- }
+  public removeObjectFromField(o: GameFieldObject): void {
+    o.subscribes.map(el => this.unSubscribe(el, o))
+  }
 
- public gameOver(): void {
-  this.resetGame();
-  this.startGame();
- }
+  public newGame(): void {
+    this.resetGame();
+    this.startGame();
+  }
 
- private startGame() {
-  this.keyboardController.addGameFlowEngine(this.gameFlowEngine);
-  const hero = new Hero(this, 200,800);
-  this.addObjectOnField(hero);
- }
+  public gamePauseSwitch(): void {
+    this.gameIsPaused = !this.gameIsPaused;
+  }
 
- private resetGame() {
-  this.drawController.clear();
-  this.keyboardController.clear();
-  this.clockController.clear();
-  this.collisionController.clear();
- }
+  private startGame() {
+    this.keyboardController.addGameFlowEngine(this.gameFlowEngine);
+    const hero = new Hero(this, 200, 800);
+    this.addObjectOnField(hero);
+  }
 
- private unSubscribe(el: Events, obj: GameFieldObject) {
-  const switcher = {
-     [Events.Keyboard]: () => this.keyboardController.removeEventListener(obj),
-     [Events.Draw]: () => this.drawController.removeEventListener(obj),
-     [Events.Clock]: () =>  this.clockController.removeEventListener(obj),
-     [Events.Collision]: () => this.collisionController.removeEventListener(obj),
-   }
-  switcher[el]();
- }
+  private resetGame() {
+    this.drawController.clear();
+    this.keyboardController.clear();
+    this.clockController.clear();
+    this.collisionController.clear();
+  }
 
-  private subscriber(el:Events, obj:GameFieldObject){
+
+  private unSubscribe(el: Events, obj: GameFieldObject) {
+    const switcher = {
+      [Events.Keyboard]: () => this.keyboardController.removeEventListener(obj),
+      [Events.Draw]: () => this.drawController.removeEventListener(obj),
+      [Events.Clock]: () => this.clockController.removeEventListener(obj),
+      [Events.Collision]: () => this.collisionController.removeEventListener(obj),
+    }
+    switcher[el]();
+  }
+
+  private subscriber(el: Events, obj: GameFieldObject) {
     const switcher = {
       [Events.Keyboard]: () => this.keyboardController.addNewEventListener(obj),
       [Events.Draw]: () => this.drawController.addNewEventListener(obj),
-      [Events.Clock]: () =>  this.clockController.addNewEventListener(obj),
+      [Events.Clock]: () => this.clockController.addNewEventListener(obj),
       [Events.Collision]: () => this.collisionController.addNewEventListener(obj),
     }
-   switcher[el]();
+    switcher[el]();
   }
 
 }

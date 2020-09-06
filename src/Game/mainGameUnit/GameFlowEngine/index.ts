@@ -1,6 +1,5 @@
 import Enemy from '../../Actors/DamageableActors/Enemy';
 import Game from '../../mainGameUnit';
-import MainHero from '../../Actors/DamageableActors/Hero';
 
 class GameFlowEngine {
   public id = 'gameFlowEngine';
@@ -23,12 +22,14 @@ class GameFlowEngine {
   public keyboardHandler(e: KeyboardEvent): void {
     e.key === 'n' 
       &&  e.type ==='keyup' 
-        && this.gameOver();
+        && this.newGame();
   }
   // TODO: ---
-  public gameOver(): void {
+
+  public newGame(): void {
     console.log('Game over'); 
-    this.game.gameOver();
+    this.game.newGame();
+    
   }
   // TODO: --- 
   public restartGame(): void { return }

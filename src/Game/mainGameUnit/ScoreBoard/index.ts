@@ -1,23 +1,12 @@
-
+import getNewIndicator from './getNewIndicator';
 class ScoreBoard {
   health: HTMLElement;
-  score: HTMLElement
+  score: HTMLElement;
+  status: HTMLElement;
   init(div: HTMLElement): void {
-    const divWrap = document.createElement('div');
-    divWrap.style.width = '100%'
-    const healthCapture = document.createElement('div');
-    healthCapture.innerHTML = "health:";
-    healthCapture.style.width = '50%';
-    healthCapture.style.float = 'left';
-    const healthValue = document.createElement('div');
-    healthValue.innerHTML = "-";
-    healthValue.style.float = 'left';
-    healthValue.style.width = '40%';
-
-    divWrap.appendChild(healthCapture);
-    divWrap.appendChild(healthValue)
-    div.appendChild(divWrap);
-    this.health = healthValue;
+    this.health = getNewIndicator(div, 'Health');
+    this.score = getNewIndicator(div, 'Score');
+    this.score = getNewIndicator(div, 'Status');
   }
 
   setHeathValue(health: number): void {
