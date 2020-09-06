@@ -8,6 +8,7 @@ import GameFlowEngine from './GameFlowEngine';
 import Hero from '../Actors/DamageableActors/Hero';
 import CollisionController from './Controllers/CollisionsController';
 import ScoreBoard from './ScoreBoard';
+import GameState from './GameState';
 
 class MainGame implements Game {
   public events = Events;
@@ -16,7 +17,8 @@ class MainGame implements Game {
   public readonly canvasOnHtml: HTMLCanvasElement;
   public gameLevel: number;
   public gameFlowEngine = new GameFlowEngine(this);
-  public ScoreBoard = new ScoreBoard();
+  public gameState = new GameState(this);
+  public scoreBoard = new ScoreBoard();
   private gameIsPaused = false;
   private keyboardController = new KeyboardController();
   private clockController = new ClockController();
@@ -34,7 +36,7 @@ class MainGame implements Game {
       this.drawController = new DrawController(width, height);
       const scoreDiv: HTMLElement | null = document.getElementById('score');
       if (!scoreDiv) throw new Error('Cant find element #score in html');
-      this.ScoreBoard.init(scoreDiv);
+      this.scoreBoard.init(scoreDiv);
     } catch (e) {
       console.log(e);
     }
@@ -47,7 +49,7 @@ class MainGame implements Game {
   }
 
   public clock = async (): Promise<void> => {
-    if (this.gameIsPaused) return;
+    if (this.gameState.isPaused) return;
     this.gameFlowEngine.gameTic();
     this.collisionController.eventHandler();
     this.clockController.eventHandler();
@@ -74,7 +76,8 @@ class MainGame implements Game {
   }
 
   public gamePauseSwitch(): void {
-    this.gameIsPaused = !this.gameIsPaused;
+    //this.gameIsPaused = !this.gameIsPaused;
+    this.gameState.isPaused =!this.gameState.isPaused
   }
 
   private startGame() {
