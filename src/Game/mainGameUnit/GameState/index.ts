@@ -31,7 +31,7 @@ class GameState {
   }
 
   get health(): number {
-    return this._score;
+    return this._health;
   }
 
   set isPaused(data: boolean) {
@@ -53,6 +53,7 @@ class GameState {
   }
 
   private updateScoreboard() {
+    console.log('------------>', this);
     this.game.scoreBoard.updateData(this);
   }
 

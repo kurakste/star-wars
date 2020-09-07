@@ -17,7 +17,8 @@ class MainHero extends DamageableActors {
     this.hSpeed = 10;
     this.setSpriteMatrix(this.spriteIndexInMatrix); 
     this.health = 900;
-    this.game.scoreBoard.setHeathValue(this.health)
+    this.game.gameState.health = this.health;
+
   }
 
   public keyboardHandler(e: KeyboardEvent): void {
@@ -59,7 +60,7 @@ class MainHero extends DamageableActors {
   protected getDemage(o: IGameFieldObject): void {
     super.getDemage(o);
     console.log('demage from getDemage', o);
-    this.game.scoreBoard.setHeathValue(this.health);
+    this.game.gameState.health = this.health;
     (this.health<=0) && this.sendGameOver();
   }
 
