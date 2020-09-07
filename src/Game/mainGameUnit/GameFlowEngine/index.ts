@@ -32,11 +32,9 @@ class GameFlowEngine {
     if (o.type === gameObjectTypes.enemyTypeActor) this.enemyWasDestroyed(o);
   }
 
-  
   public newGame(): void {
     console.log('Game over'); 
     this.game.newGame();
-    
   }
 
   protected enemyWasDestroyed(o: IGameFieldObject): void {
@@ -44,7 +42,7 @@ class GameFlowEngine {
     const score = o.maxHealth ? o.maxHealth / 10 : 0;
     this.game.gameState.score += score;
   }
-  
+
   // TODO: --- 
   public restartGame(): void { return }
   
