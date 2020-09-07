@@ -32,22 +32,22 @@ class GameFlowEngine {
     if (o.type === gameObjectTypes.enemyTypeActor) this.enemyWasDestroyed(o);
   }
 
-  protected enemyWasDestroyed(o: IGameFieldObject): void {
-    console.log
-    const score = o.maxHealth ? o.maxHealth / 10 : 0;
-    this.game.gameState.score += score;
-  }
-
-
-
+  
   public newGame(): void {
     console.log('Game over'); 
     this.game.newGame();
     
   }
+
+  protected enemyWasDestroyed(o: IGameFieldObject): void {
+    console.log
+    const score = o.maxHealth ? o.maxHealth / 10 : 0;
+    this.game.gameState.score += score;
+  }
+  
   // TODO: --- 
   public restartGame(): void { return }
-
+  
   private addEnemyLogic(): void {
     if(this.currentGameTime - this.lastEnemyBornTime >=this.enemyBornPeriod) {
       this.lastEnemyBornTime = this.currentGameTime;
