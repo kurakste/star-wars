@@ -3,6 +3,7 @@ import IGameFieldObject from '../../Interfaces/IGameFieldObject.t';
 import gameObjTypes from '../../Interfaces/gameObjTypes';
 
 abstract class DamageableActors extends Actor {
+  public maxHealth = 400;
   public health = 400;
   
   protected getDemage(o: IGameFieldObject): void {
@@ -13,7 +14,9 @@ abstract class DamageableActors extends Actor {
   }
   
   protected checkHealthLogic(): void {
+    (this.health<=0) && this.game.gameFlowEngine.objectWasDestroyed(this);
     (this.health<=0) && this.game.removeObjectFromField(this);
+
   }
 
   public collisionHandler(o: IGameFieldObject): void {

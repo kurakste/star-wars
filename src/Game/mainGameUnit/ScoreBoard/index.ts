@@ -10,7 +10,6 @@ class ScoreBoard {
   }
 
   setHeathValue(health: number): void {
-    console.log('_________________', health);
     this.health.innerHTML = health.toString();
   }
 
@@ -23,7 +22,6 @@ class ScoreBoard {
   }
 
   updateData(data: IGameState): void {
-    console.log('+++++++++++', data.health);
     this.setHeathValue(data.health);
     this.setScoreValue(data.score);
     if (data.isPaused) this.setStatusValue('paused');

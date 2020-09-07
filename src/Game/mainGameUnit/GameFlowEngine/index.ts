@@ -1,5 +1,7 @@
 import Enemy from '../../Actors/DamageableActors/Enemy';
 import Game from '../../mainGameUnit';
+import IGameFieldObject from '../../Interfaces/IGameFieldObject.t';
+import gameObjectTypes from '../../Interfaces/gameObjTypes';
 
 class GameFlowEngine {
   public id = 'gameFlowEngine';
@@ -24,7 +26,19 @@ class GameFlowEngine {
       &&  e.type ==='keyup' 
         && this.newGame();
   }
-  // TODO: ---
+
+  public objectWasDestroyed(o: IGameFieldObject): void {
+    console.log('was destroyed: ', o);
+    if (o.type === gameObjectTypes.enemyTypeActor) this.enemyWasDestroyed(o);
+  }
+
+  protected enemyWasDestroyed(o: IGameFieldObject): void {
+    console.log
+    const score = o.maxHealth ? o.maxHealth / 10 : 0;
+    this.game.gameState.score += score;
+  }
+
+
 
   public newGame(): void {
     console.log('Game over'); 

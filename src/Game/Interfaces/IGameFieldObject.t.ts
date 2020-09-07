@@ -12,6 +12,7 @@ interface IGameFieldObject  {
   height: number;
   demage?: number;
   health?: number;
+  maxHealth?: number;
 
   draw?: (o: any) => void;
   keyboardHandler?: (e: KeyboardEvent) => void;
