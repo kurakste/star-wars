@@ -82,6 +82,7 @@ class MainGame implements Game {
   private startGame() {
     this.keyboardController.addGameFlowEngine(this.gameFlowEngine);
     const hero = new Hero(this, 200, 800);
+    this.gameState.resetScoreBoard();
     this.addObjectOnField(hero);
   }
 

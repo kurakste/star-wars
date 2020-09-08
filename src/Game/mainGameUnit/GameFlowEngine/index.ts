@@ -33,7 +33,6 @@ class GameFlowEngine {
   }
 
   public newGame(): void {
-    console.log('Game over'); 
     this.game.newGame();
   }
 

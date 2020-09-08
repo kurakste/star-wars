@@ -20,7 +20,7 @@ class GameState {
 
   set score(data: number) {
     this._score = data;
-    this.updateScoreboard();
+    this.updateScoreboard('score', data);
   }
 
   get score(): number {
@@ -29,7 +29,7 @@ class GameState {
 
   set health(data: number) {
     this._health = data;
-    this.updateScoreboard();
+    this.updateScoreboard('health', data);
   }
 
   get health(): number {
@@ -38,7 +38,7 @@ class GameState {
 
   set isPaused(data: boolean) {
     this._isPaused = data;
-    this.updateScoreboard();
+    this.updateScoreboard('isPaused', data);
   }
 
   get isPaused(): boolean {
@@ -47,7 +47,7 @@ class GameState {
 
   set isGameOver(data: boolean) {
     this._isGameOver = data;
-    this.updateScoreboard();
+    this.updateScoreboard('isGameOver', data);
   }
 
   get isGameOver(): boolean {
@@ -56,7 +56,7 @@ class GameState {
 
   set level(data: number) {
     this._level = data;
-    this.updateScoreboard();
+    this.updateScoreboard('level', data);
   }
 
   get level(): number {
@@ -69,12 +69,15 @@ class GameState {
     this._level = 1;
     this._isPaused = false;
     this._isGameOver = false;
-    this.updateScoreboard();
+    const data = { score: 0, health: 0, level: 0, isPaused: false, isGameOver: false };
+    console.log('--------------------:', data);
+    this.game.scoreBoard.updateData(data);
   }
 
-  private updateScoreboard() {
+  private updateScoreboard(indicator: indicatorsName, value: string | number | boolean) {
     console.log('------------>', this);
-    this.game.scoreBoard.updateData(this);
+    const data = { [indicator]: value };
+    this.game.scoreBoard.updateData(data);
   }
 }
 

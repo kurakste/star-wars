@@ -1,7 +1,5 @@
 import getNewIndicator from './getNewIndicator';
 
-type indicatorsName  = 'health' | 'score' | 'status' | 'level';
-
 class ScoreBoard {
   health: HTMLElement;
   score: HTMLElement;
@@ -15,16 +13,20 @@ class ScoreBoard {
   }
 
   setDataToScore(name: indicatorsName, data: number | string): void {
+    if (name === 'isPaused' || name === 'isGameOver') return;
     this[name].innerHTML = data.toString();
   }
 
-  updateData(data: IGameState): void {
-    this.setDataToScore('health', data.health);
-    this.setDataToScore('score', data.score);
-    this.setDataToScore('level', data.level);
-    if (data.isPaused) this.setDataToScore('status', 'paused');
-    if (data.isGameOver) this.setDataToScore('status', 'game over');
-    if (!(data.isPaused || data.isGameOver)) this.setDataToScore('status', 'game');
+  updateData(data: Partial<IGameState>): void {
+    console.log('++++++++++++++++', data);
+    if ('health' in data && data.health) this.setDataToScore('health', data.health);
+    if ('score' in data && data.score) this.setDataToScore('score', data.score);
+    if ('level' in data && data.level!==undefined) this.setDataToScore('level', data.level);
+    if ('isPaused' in data) 
+      if (data.isPaused) this.setDataToScore('status', 'paused');
+    if ('isGameOver' in data) 
+      if (data.isGameOver) this.setDataToScore('status', 'game over');
+    if ('isPaused' in data && !data.isPaused )  this.setDataToScore('status', 'game');
   }
 }
 
