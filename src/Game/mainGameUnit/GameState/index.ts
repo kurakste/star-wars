@@ -63,12 +63,19 @@ class GameState {
     return this._level;
   }
 
+  public resetScoreBoard(): void {
+    this._score = 0;
+    this._health = 0;
+    this._level = 1;
+    this._isPaused = false;
+    this._isGameOver = false;
+    this.updateScoreboard();
+  }
 
   private updateScoreboard() {
     console.log('------------>', this);
     this.game.scoreBoard.updateData(this);
   }
-
 }
 
 export default GameState;

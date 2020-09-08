@@ -90,6 +90,7 @@ class MainGame implements Game {
     this.keyboardController.clear();
     this.clockController.clear();
     this.collisionController.clear();
+    this.gameState.resetScoreBoard();
   }
 
   private unSubscribe(el: Events, obj: GameFieldObject) {

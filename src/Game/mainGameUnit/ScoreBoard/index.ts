@@ -10,8 +10,8 @@ class ScoreBoard {
   init(div: HTMLElement): void {
     this.health = getNewIndicator(div, 'Health');
     this.score = getNewIndicator(div, 'Score');
-    this.status = getNewIndicator(div, 'Status');
     this.level = getNewIndicator(div, 'Level');
+    this.status = getNewIndicator(div, 'Status');
   }
 
   setDataToScore(name: indicatorsName, data: number | string): void {
