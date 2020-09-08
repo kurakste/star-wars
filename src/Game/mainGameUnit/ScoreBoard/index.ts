@@ -1,4 +1,7 @@
 import getNewIndicator from './getNewIndicator';
+
+type indicatorsName  = 'health' | 'score' | 'status' | 'level';
+
 class ScoreBoard {
   health: HTMLElement;
   score: HTMLElement;
@@ -11,32 +14,18 @@ class ScoreBoard {
     this.level = getNewIndicator(div, 'Level');
   }
 
-  setHeathValue(health: number): void {
-    this.health.innerHTML = health.toString();
-  }
-
-  setScoreValue(health: number): void {
-    this.score.innerHTML = health.toString();
-  }
-
-  setStatusValue(health: string): void {
-    this.status.innerHTML = health;
-  }
-
-  setLevelValue(data: number): void {
-    console.log('>>>>>>>>>>>', data);
-    this.level.innerHTML = data.toString();
+  setDataToScore(name: indicatorsName, data: number | string): void {
+    this[name].innerHTML = data.toString();
   }
 
   updateData(data: IGameState): void {
-    this.setHeathValue(data.health);
-    this.setScoreValue(data.score);
-    this.setLevelValue(data.level);
-    if (data.isPaused) this.setStatusValue('paused');
-    if (data.isGameOver) this.setStatusValue('game over');
-    if (!(data.isPaused || data.isGameOver)) this.setStatusValue('game');
+    this.setDataToScore('health', data.health);
+    this.setDataToScore('score', data.score);
+    this.setDataToScore('level', data.level);
+    if (data.isPaused) this.setDataToScore('status', 'paused');
+    if (data.isGameOver) this.setDataToScore('status', 'game over');
+    if (!(data.isPaused || data.isGameOver)) this.setDataToScore('status', 'game');
   }
-
 }
 
 export default ScoreBoard;
