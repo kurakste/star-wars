@@ -38,9 +38,15 @@ class GameFlowEngine {
   }
 
   protected enemyWasDestroyed(o: IGameFieldObject): void {
-    console.log
     const score = o.maxHealth ? o.maxHealth / 10 : 0;
     this.game.gameState.score += score;
+    if (
+      this.game.gameState.score 
+        >=
+          200 * this.game.gameState.level
+            ) {
+                ++this.game.gameState.level
+            }
   }
 
   // TODO: --- 

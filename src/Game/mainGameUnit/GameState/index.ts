@@ -4,6 +4,7 @@ import MainGame from "..";
 class GameState {
   public _score: number;
   public _health: number;
+  public _level: number;
   public _isPaused: boolean;
   public _isGameOver: boolean;
   private game: MainGame;
@@ -12,6 +13,7 @@ class GameState {
     this.game = g;
     this._score = 0;
     this._health = 0;
+    this._level = 1;
     this._isPaused = false;
     this._isGameOver = false;
   }
@@ -51,6 +53,16 @@ class GameState {
   get isGameOver(): boolean {
     return this._isGameOver;
   }
+
+  set level(data: number) {
+    this._level = data;
+    this.updateScoreboard();
+  }
+
+  get level(): number {
+    return this._level;
+  }
+
 
   private updateScoreboard() {
     console.log('------------>', this);
