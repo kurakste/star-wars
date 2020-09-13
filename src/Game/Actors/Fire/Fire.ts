@@ -21,7 +21,9 @@ abstract class Fire extends Actor {
   }
 
   collisionHandler(o: GameFieldObject): void {
-    (o.type!== GameObjTypes.enemyBullet) && this.game.removeObjectFromField(this);
+    (o.type!== GameObjTypes.enemyBullet)
+      && (o.type!== GameObjTypes.mainHeroBullet) 
+        && this.game.removeObjectFromField(this);
   }
 }
 
