@@ -6,7 +6,6 @@ import MainGameUnit from '../../../mainGameUnit';
 import directions from '../../../Interfaces/Direction';
 import IGameFieldObject from '../../../Interfaces/IGameFieldObject.t';
 
-
 class MainHero extends DamageableActors {
     type = gameObjTypes.mainGameActor;
 
@@ -22,7 +21,6 @@ class MainHero extends DamageableActors {
   }
 
   public keyboardHandler(e: KeyboardEvent): void {
-    
     if (e.type !== 'keydown') return;
     e.key ==='ArrowRight' 
       && !this.checkIsThereTheGameBoarder(directions.right) && this.moveLeft();
@@ -65,8 +63,6 @@ class MainHero extends DamageableActors {
     this.game.gameState.health = this.health;
     (this.health<=0) && this.sendGameOver();
   }
-
-
 }
 
 export default MainHero;

@@ -32,9 +32,8 @@ class Enemy extends DamageableActors {
       const fire = new Fire(this.game, this.xpos, this.ypos + this.height + 2);
       this.game.addObjectOnField(fire);
       this.clockBeforeFire = 50;
-
     } else {
-      --this.clockBeforeFire;   
+      --this.clockBeforeFire;
     }
   }
 }
