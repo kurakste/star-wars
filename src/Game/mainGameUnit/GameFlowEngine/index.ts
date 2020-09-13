@@ -1,14 +1,14 @@
-import Enemy from '../../Actors/DamageableActors/Enemy';
 import Game from '../../mainGameUnit';
 import IGameFieldObject from '../../Interfaces/IGameFieldObject.t';
 import gameObjectTypes from '../../Interfaces/gameObjTypes';
+import EnemyFactory from '../../Actors/DamageableActors/Enemy/EnemyFactory';
 
 class GameFlowEngine {
   public id = 'gameFlowEngine';
   public type = 'gameFlowEngine';
   private currentGameTime = 0;
   private lastEnemyBornTime: number;
-  private enemyBornPeriod = 80;
+  private enemyBornPeriod = 50;
   private game: Game;
   
   constructor(game: Game) {
@@ -48,14 +48,15 @@ class GameFlowEngine {
             }
   }
 
-  // TODO: --- 
   public restartGame(): void { return }
   
   private addEnemyLogic(): void {
     if(this.currentGameTime - this.lastEnemyBornTime >=this.enemyBornPeriod) {
       this.lastEnemyBornTime = this.currentGameTime;
       const xpos = Math.random()*400;
-      const enemy = new Enemy(this.game, xpos, 20);
+      const enemy = new EnemyFactory().createEnemy(
+        this.game, xpos, 20, this.game.gameState.level 
+        );
       this.game.addObjectOnField(enemy);
     }
   }

@@ -16,15 +16,15 @@ abstract class Actor {
   public ypos: number;
   public width: number;
   public height: number;
+  public hSpeed:number;
+  public vSpeed:number;
   protected spriteMatrix = spriteMatrix;
   protected spriteIndexInMatrix: number;
   protected spriteXOffset: number;
   protected spriteYOffset: number;
   protected spriteHeight: number;
   protected spriteWidth: number;
-  protected hSpeed:number;
-  protected vSpeed:number;
-  protected collisions: IGameFieldObject[] = [];
+  protected collisions: IGameFieldObject[] = []; // TODO: is it useful?
   protected game: Game; 
 
   constructor(game: Game, xpos: number, ypos: number, width: number, height: number) {
@@ -68,6 +68,21 @@ abstract class Actor {
   public collisionHandler(o: IGameFieldObject): void {
     console.log(`collision: ${this.type} - ${this.id} with:`, o);
   }
+
+  public setSpriteMatrix(index: number): void {
+    try {
+      // console.log(this.type);
+      this.spriteXOffset = this.spriteMatrix[this.type][index].sx;
+      this.spriteYOffset = spriteMatrix[this.type][index].sy;
+      this.spriteWidth = spriteMatrix[this.type][index].width;
+      this.spriteHeight = spriteMatrix[this.type][index].hight;
+      this.width = spriteMatrix[this.type][index].width / 4;
+      this.height = spriteMatrix[this.type][index].hight/ 4;
+    } catch(e) {
+      console.log('error', this, e, spriteMatrix)
+    }
+  }
+  
   protected moveLeft(): void {
     this.xpos = this.xpos + this.hSpeed;
   }
@@ -82,20 +97,6 @@ abstract class Actor {
   
   protected moveUp(): void {
     this.ypos = this.ypos - this.vSpeed;
-  }
-
-  protected setSpriteMatrix(index: number): void {
-    try {
-      // console.log(this.type);
-      this.spriteXOffset = this.spriteMatrix[this.type][index].sx;
-      this.spriteYOffset = spriteMatrix[this.type][index].sy;
-      this.spriteWidth = spriteMatrix[this.type][index].width;
-      this.spriteHeight = spriteMatrix[this.type][index].hight;
-      this.width = spriteMatrix[this.type][index].width / 4;
-      this.height = spriteMatrix[this.type][index].hight/ 4;
-    } catch(e) {
-      console.log('error', this, e, spriteMatrix)
-    }
   }
 
 }
