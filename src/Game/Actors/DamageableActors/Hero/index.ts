@@ -22,15 +22,17 @@ class MainHero extends DamageableActors {
   }
 
   public keyboardHandler(e: KeyboardEvent): void {
-    e.type === 'keydown' && e.key ==='ArrowRight' 
-    && !this.checkIsThereTheGameBoarder(directions.right) && this.moveLeft();
-    e.type === 'keydown' && e.key ==='ArrowLeft'
-    && !this.checkIsThereTheGameBoarder(directions.left) && this.moveRight();
-    e.type === 'keydown' && e.key ==='ArrowUp' 
-    && !this.checkIsThereTheGameBoarder(directions.up) && this.moveUp();
-    e.type === 'keydown' && e.key ==='ArrowDown' 
-    && !this.checkIsThereTheGameBoarder(directions.down)&& this.moveDown();
-    e.type === 'keydown' && e.key ===' ' && this.fire();
+    
+    if (e.type !== 'keydown') return;
+    e.key ==='ArrowRight' 
+      && !this.checkIsThereTheGameBoarder(directions.right) && this.moveLeft();
+    e.key ==='ArrowLeft'
+      && !this.checkIsThereTheGameBoarder(directions.left) && this.moveRight();
+    e.key ==='ArrowUp' 
+      && !this.checkIsThereTheGameBoarder(directions.up) && this.moveUp();
+    e.key ==='ArrowDown' 
+      && !this.checkIsThereTheGameBoarder(directions.down)&& this.moveDown();
+    e.key ===' ' && this.fire();
   }
   
   public borderCollisionHandler(): void {

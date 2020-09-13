@@ -8,7 +8,6 @@ class HeroFire extends Fire {
     super(game, xpos, ypos, 1);
     this.type = gameObjTypes.mainHeroBullet;
     this.setSpriteMatrix(this.spriteIndexInMatrix);
-    console.log('>>>>>>new hero fire', this);
   }
 
 }
