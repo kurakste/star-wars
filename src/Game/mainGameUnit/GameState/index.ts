@@ -20,6 +20,7 @@ class GameState {
 
   set score(data: number) {
     this._score = data;
+    if (data >= 200 * this.level) ++this.level;
     this.updateScoreboard('score', data);
   }
 
