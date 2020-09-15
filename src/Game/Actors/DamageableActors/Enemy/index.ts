@@ -29,6 +29,9 @@ class Enemy extends DamageableActors {
   protected move():void {
     const {dx, dy} = calcEnemySteps(this.level, {x: this.xpos, y: this.ypos});
     this.ypos = this.ypos + dy;
+    const border = (this.xpos + dx >= this.game.width - this.width || this.xpos + dx <= 5);
+    console.log('-----border:', border, this.xpos + dx);
+    if (border) return;
     this.xpos = this.xpos + dx;
   }
 
