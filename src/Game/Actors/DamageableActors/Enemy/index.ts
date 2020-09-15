@@ -2,9 +2,11 @@ import DamageableActors from '../DamageableActors';
 import GameObjTypes from '../../../Interfaces/gameObjTypes';
 import Game from '../../../mainGameUnit';
 import Fire from '../../Fire/EnemyFire';
+import { calcEnemySteps } from './calcEnemySteps';
 class Enemy extends DamageableActors {
 
   private clockBeforeFire = 50;
+  protected level: number;
 
   constructor(game: Game, xpos: number, ypos: number) {
     super(game, xpos, ypos, 50, 50);
@@ -15,6 +17,7 @@ class Enemy extends DamageableActors {
     this.spriteWidth = 100;
     this.vSpeed = 5;
     this.hSpeed = 5;
+    this.level = game.gameState.level;
     this.setSpriteMatrix(this.spriteIndexInMatrix);
   }
 
@@ -23,8 +26,10 @@ class Enemy extends DamageableActors {
     this.generateFire()
   }
 
-  private move() {
-    this.ypos = this.ypos + this.vSpeed;
+  protected move():void {
+    const {dx, dy} = calcEnemySteps(this.level, {x: this.xpos, y: this.ypos});
+    this.ypos = this.ypos + dy;
+    this.xpos = this.xpos + dx;
   }
 
   private generateFire(){
