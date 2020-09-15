@@ -32,6 +32,10 @@ class MainHero extends DamageableActors {
       && !this.checkIsThereTheGameBoarder(directions.down)&& this.moveDown();
     e.key ===' ' && this.fire();
   }
+
+  public clock():void {
+    return;
+  }
   
   public borderCollisionHandler(): void {
     // rewrite parent method;

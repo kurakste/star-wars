@@ -45,7 +45,7 @@ abstract class Actor {
     this.id = cryptoRandomString({length: 10});
   }
 
-  public clock(): void { return }
+  public clock(): void { throw new Error('You has to implement clock method.') }
 
   public getActorViewObject(): IActorViewObject {
       return {
