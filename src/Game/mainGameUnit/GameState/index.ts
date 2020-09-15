@@ -71,12 +71,10 @@ class GameState {
     this._isPaused = false;
     this._isGameOver = false;
     const data = { score: 0, health: 0, level: 0, isPaused: false, isGameOver: false };
-    console.log('--------------------:', data);
     this.game.scoreBoard.updateData(data);
   }
 
   private updateScoreboard(indicator: indicatorsName, value: string | number | boolean) {
-    console.log('------------>', this);
     const data = { [indicator]: value };
     this.game.scoreBoard.updateData(data);
   }
