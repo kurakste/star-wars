@@ -35,6 +35,8 @@ class GameFlowEngine {
   public newGame(): void {
     this.game.newGame();
   }
+  
+  public restartGame(): void { return }
 
   protected enemyWasDestroyed(o: IGameFieldObject): void {
     const score = o.maxHealth ? o.maxHealth / 10 : 0;
@@ -47,8 +49,6 @@ class GameFlowEngine {
                 ++this.game.gameState.level
             }
   }
-
-  public restartGame(): void { return }
   
   private addEnemyLogic(): void {
     if(this.currentGameTime - this.lastEnemyBornTime >=this.enemyBornPeriod) {
