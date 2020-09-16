@@ -4,7 +4,7 @@ import MainGame from "..";
 class GameState {
   public _score: number;
   public _health: number;
-  public _level: number;
+  public _level: TGameLevel;
   public _isPaused: boolean;
   public _isGameOver: boolean;
   private game: MainGame;
@@ -20,7 +20,7 @@ class GameState {
 
   set score(data: number) {
     this._score = data;
-    if (data >= 200 * this.level) ++this.level;
+    this.calculateGameLevel(data);
     this.updateScoreboard('score', data);
   }
 
@@ -55,12 +55,12 @@ class GameState {
     return this._isGameOver;
   }
 
-  set level(data: number) {
+  set level(data: TGameLevel) {
     this._level = data;
     this.updateScoreboard('level', data);
   }
 
-  get level(): number {
+  get level(): TGameLevel {
     return this._level;
   }
 
@@ -77,6 +77,45 @@ class GameState {
   private updateScoreboard(indicator: indicatorsName, value: string | number | boolean) {
     const data = { [indicator]: value };
     this.game.scoreBoard.updateData(data);
+  }
+
+  private calculateGameLevel(score: number): void {
+    const scoreToLevelNumber = (sc: number): number => {
+      if (sc >= 200 * this.level) return this.level + 1
+      return this.level;
+    };
+    const levelAsNUmber = scoreToLevelNumber(score);
+    if (levelAsNUmber === this.level) return;    
+
+    switch(scoreToLevelNumber(score)) {
+      case 0: 
+        this.level = 0;
+        break;
+      case 1: 
+        this.level = 1;
+        break;
+      case 2: 
+        this.level = 2;
+        break;
+      case 3: 
+        this.level = 3;
+        break;
+      case 4: 
+        this.level = 4;
+        break;
+      case 5: 
+        this.level = 5;
+        break;
+      case 6: 
+        this.level = 6;
+        break;
+      case 7: 
+        this.level = 7;
+        break;
+      case 8: 
+        this.level = 7;
+        break;
+    }
   }
 }
 
