@@ -1,6 +1,4 @@
 import MainGame from "..";
-
-
 class GameState {
   public _score: number;
   public _health: number;
@@ -13,7 +11,7 @@ class GameState {
     this.game = g;
     this._score = 0;
     this._health = 0;
-    this._level = 1;
+    this._level = 0;
     this._isPaused = false;
     this._isGameOver = false;
   }
@@ -67,7 +65,7 @@ class GameState {
   public resetScoreBoard(): void {
     this._score = 0;
     this._health = 0;
-    this._level = 1;
+    this._level = 0;
     this._isPaused = false;
     this._isGameOver = false;
     const data = { score: 0, health: 0, level: 0, isPaused: false, isGameOver: false };

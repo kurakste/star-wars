@@ -8,7 +8,7 @@ class Enemy extends DamageableActors {
   private clockBeforeFire = 50;
   protected level: number;
 
-  constructor(game: Game, xpos: number, ypos: number) {
+  constructor(game: Game, xpos: number, ypos: number, health: number, spriteMatrixIndex: number) {
     super(game, xpos, ypos, 50, 50);
     this.type = GameObjTypes.enemyTypeActor;
     this.spriteXOffset = 190;
@@ -18,7 +18,10 @@ class Enemy extends DamageableActors {
     this.vSpeed = 5;
     this.hSpeed = 5;
     this.level = game.gameState.level;
-    this.setSpriteMatrix(this.spriteIndexInMatrix);
+    this.health = health;
+    this.maxHealth = health;
+    this.setSpriteMatrix(spriteMatrixIndex); // TODO: check is this useful this.spriteIndexInMatrix
+    console.log('AAA++++++++++', spriteMatrixIndex)
   }
 
   public clock(): void {

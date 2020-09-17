@@ -3,12 +3,19 @@ import MainGame from "../../../../mainGameUnit";
 
 class EnemyFactory {
 
-  createEnemy(game: MainGame, xpos: number, ypos: number, level: number): Enemy {
-    const enm = new Enemy(game, xpos, ypos);
-    enm.health = level * 200;
-    enm.maxHealth = level * 200;
-    enm.vSpeed = enm.vSpeed + enm.vSpeed * (level -1);
-    enm.setSpriteMatrix(level-1);
+  public createEnemy(game: MainGame, xpos: number, ypos: number, level: TGameLevel): Enemy {
+    const getEnemyLevelByGameLevel = (l:TGameLevel) => {
+      let enemyLvl: TGameLevel = l;
+      if (Math.random() >= 0.8) enemyLvl = Math.min(l+1, 8) as TGameLevel
+      if (Math.random() <= 0.2) enemyLvl = Math.max(l-1, 0) as TGameLevel
+      return enemyLvl;
+    }
+    return this.createEnemyByLevel(game, xpos, ypos, getEnemyLevelByGameLevel(level))
+  }
+
+  private createEnemyByLevel(game: MainGame, xpos: number, ypos: number, lvl: TEnemyLevel): Enemy {
+    const health = 200 + lvl*200;
+    const enm = new Enemy(game, xpos, ypos, health, lvl);
     return enm;
   }
   
