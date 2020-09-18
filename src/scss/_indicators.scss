@@ -1,0 +1,16 @@
+.indicatorWrapper {
+  height: 20px;
+  width: 100%;
+  .full {
+    background-color: lightgreen;
+    color: lightgreen;
+    width: 50%;
+    float: left;
+  }
+  .blank {
+    background-color: lightsalmon;
+    color: lightsalmon;
+    width: 50%;
+    float: left;
+  }
+}

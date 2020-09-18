@@ -3,6 +3,7 @@ import CollisionController from "../../Controllers/CollisionsController";
 function getNewIndicator(parentDiv: HTMLElement, name: string): HTMLElement {
   const divWrap = document.createElement('div');
   divWrap.style.width = '100%'
+  divWrap.style.height = '30px'
   const healthCapture = document.createElement('div');
   healthCapture.innerHTML = `${name}:`;  
   healthCapture.style.width = '50%';
