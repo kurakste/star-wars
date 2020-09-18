@@ -18,7 +18,6 @@ class ScoreBoard {
   }
 
   updateData(data: Partial<IGameState>): void {
-    console.log('++++++++++++++++', data);
     if ('health' in data && data.health) this.setDataToScore('health', data.health);
     if ('score' in data && data.score) this.setDataToScore('score', data.score);
     if ('level' in data && data.level!==undefined) this.setDataToScore('level', data.level);

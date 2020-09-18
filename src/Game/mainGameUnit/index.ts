@@ -75,7 +75,6 @@ class MainGame implements Game {
   }
 
   public gamePauseSwitch(): void {
-    //this.gameIsPaused = !this.gameIsPaused;
     this.gameState.isPaused =!this.gameState.isPaused
   }
 

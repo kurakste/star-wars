@@ -16,15 +16,13 @@ abstract class DamageableActors extends Actor {
   protected checkHealthLogic(): void {
     (this.health<=0) && this.game.gameFlowEngine.objectWasDestroyed(this);
     (this.health<=0) && this.game.removeObjectFromField(this);
-
   }
 
   public collisionHandler(o: IGameFieldObject): void {
-    // console.log('collision with:', o.type);
     if (
       o.type === gameObjTypes.mainHeroBullet 
         || 
-      o.type === gameObjTypes.enemyBullet) this.getDemage(o);
+          o.type === gameObjTypes.enemyBullet) this.getDemage(o);
     this.checkHealthLogic();
   }
 }
