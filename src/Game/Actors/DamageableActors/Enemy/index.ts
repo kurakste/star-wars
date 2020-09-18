@@ -21,7 +21,6 @@ class Enemy extends DamageableActors {
     this.health = health;
     this.maxHealth = health;
     this.setSpriteMatrix(spriteMatrixIndex); // TODO: check is this useful this.spriteIndexInMatrix
-    console.log('AAA++++++++++', spriteMatrixIndex)
   }
 
   public clock(): void {

@@ -61,7 +61,6 @@ abstract class Actor {
   }
 
   public borderCollisionHandler(): void {
-    // console.log('border collision method', this);
     this.game.removeObjectFromField(this);
   }
 
@@ -71,7 +70,6 @@ abstract class Actor {
 
   public setSpriteMatrix(index: number): void {
     try {
-      // console.log(this.type);
       this.spriteXOffset = this.spriteMatrix[this.type][index].sx;
       this.spriteYOffset = spriteMatrix[this.type][index].sy;
       this.spriteWidth = spriteMatrix[this.type][index].width;
