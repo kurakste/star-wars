@@ -12,7 +12,7 @@ class ScoreBoard {
     this.score = getNewIndicator(div, 'Score');
     this.level = getNewIndicator(div, 'Level');
     this.status = getNewIndicator(div, 'Status');
-    this.new = new Indicators(div, 'new indicator');
+    this.new = new Indicators(div, 'Health');
   }
 
   updateIndicator(name: indicatorsName, data: number | string): void {

@@ -1,16 +1,18 @@
+$height: 20px;
+
 .indicatorWrapper {
-  height: 20px;
+  height: $height;
   width: 100%;
   .full {
+    height: $height;
     background-color: lightgreen;
     color: lightgreen;
-    width: 50%;
     float: left;
   }
   .blank {
+    height: $height;
     background-color: lightsalmon;
     color: lightsalmon;
-    width: 50%;
     float: left;
   }
 }

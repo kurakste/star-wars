@@ -1,4 +1,3 @@
-import CollisionController from "../../Controllers/CollisionsController";
 
 function getNewIndicator(parentDiv: HTMLElement, name: string): HTMLElement {
   const divWrap = document.createElement('div');

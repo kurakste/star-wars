@@ -38,13 +38,12 @@ class Indicators {
     /*html*/
     return `
       <div class="indicatorWrapper" id ="${this.capture}">
-        <div class="full">.</div>
-        <div class="blank">.</div>
+        <div class="capture">${this.capture}</div>
+        <div class="full"></div>
+        <div class="blank"></div>
       </div>
     `
   }
-
-
 }
 
 
