@@ -28,7 +28,6 @@ class GameFlowEngine {
   }
 
   public objectWasDestroyed(o: IGameFieldObject): void {
-    console.log('was destroyed: ', o);
     if (o.type === gameObjectTypes.enemyTypeActor) this.enemyWasDestroyed(o);
   }
 

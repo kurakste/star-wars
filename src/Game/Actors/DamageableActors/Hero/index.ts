@@ -43,7 +43,6 @@ class MainHero extends DamageableActors {
   
   fire(): void {
     const fire = new Fire(this.game, this.xpos + 5, this.ypos - 42);
-    console.log('from fire', fire);
     this.game.addObjectOnField(fire);
   }
 
