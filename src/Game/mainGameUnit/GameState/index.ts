@@ -78,42 +78,9 @@ class GameState {
   }
 
   private calculateGameLevel(score: number): void {
-    const scoreToLevelNumber = (sc: number): number => {
-      if (sc >= 200 * this.level) return this.level + 1
-      return this.level;
-    };
-    const levelAsNUmber = scoreToLevelNumber(score);
-    if (levelAsNUmber === this.level) return;    
-
-    switch(scoreToLevelNumber(score)) {
-      case 0: 
-        this.level = 0;
-        break;
-      case 1: 
-        this.level = 1;
-        break;
-      case 2: 
-        this.level = 2;
-        break;
-      case 3: 
-        this.level = 3;
-        break;
-      case 4: 
-        this.level = 4;
-        break;
-      case 5: 
-        this.level = 5;
-        break;
-      case 6: 
-        this.level = 6;
-        break;
-      case 7: 
-        this.level = 7;
-        break;
-      case 8: 
-        this.level = 7;
-        break;
-    }
+      if (score >= 200 * this.level) {
+        this.level = Math.min(this.level + 1, 8) as TGameLevel;
+      }   
   }
 }
 
