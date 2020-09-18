@@ -1,4 +1,5 @@
 import MainGame from './Game/mainGameUnit';
+import './scss/main.scss';
 
 (async function() {
   

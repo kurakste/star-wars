@@ -12,20 +12,20 @@ class ScoreBoard {
     this.status = getNewIndicator(div, 'Status');
   }
 
-  setDataToScore(name: indicatorsName, data: number | string): void {
+  updateIndicator(name: indicatorsName, data: number | string): void {
     if (name === 'isPaused' || name === 'isGameOver') return;
     this[name].innerHTML = data.toString();
   }
 
   updateData(data: Partial<IGameState>): void {
-    if ('health' in data && data.health) this.setDataToScore('health', data.health);
-    if ('score' in data && data.score) this.setDataToScore('score', data.score);
-    if ('level' in data && data.level!==undefined) this.setDataToScore('level', data.level);
+    if ('health' in data && data.health) this.updateIndicator('health', data.health);
+    if ('score' in data && data.score) this.updateIndicator('score', data.score);
+    if ('level' in data && data.level!==undefined) this.updateIndicator('level', data.level);
     if ('isPaused' in data) 
-      if (data.isPaused) this.setDataToScore('status', 'paused');
+      if (data.isPaused) this.updateIndicator('status', 'paused');
     if ('isGameOver' in data) 
-      if (data.isGameOver) this.setDataToScore('status', 'game over');
-    if ('isPaused' in data && !data.isPaused )  this.setDataToScore('status', 'game');
+      if (data.isGameOver) this.updateIndicator('status', 'game over');
+    if ('isPaused' in data && !data.isPaused )  this.updateIndicator('status', 'game');
   }
 }
 
