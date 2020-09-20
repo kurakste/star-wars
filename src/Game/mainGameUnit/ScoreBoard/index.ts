@@ -1,5 +1,6 @@
 import getNewIndicator from './getNewIndicator';
 import Indicators from './Indicators';
+import FlyingIndicator from './flyingIndicator'
 
 class ScoreBoard {
   health: HTMLElement;
@@ -7,12 +8,15 @@ class ScoreBoard {
   status: HTMLElement;
   level: HTMLElement;
   new: Indicators;
+  rootDiv: HTMLElement;
   init(div: HTMLElement): void {
+    this.rootDiv = div;
     this.health = getNewIndicator(div, 'Health');
     this.score = getNewIndicator(div, 'Score');
     this.level = getNewIndicator(div, 'Level');
     this.status = getNewIndicator(div, 'Status');
     this.new = new Indicators(div, 'Health');
+    this.sendFlyingMessage();
   }
 
   updateIndicator(name: indicatorsName, data: number | string): void {
@@ -30,6 +34,10 @@ class ScoreBoard {
     if ('isGameOver' in data) 
       if (data.isGameOver) this.updateIndicator('status', 'game over');
     if ('isPaused' in data && !data.isPaused )  this.updateIndicator('status', 'game');
+  }
+
+  sendFlyingMessage() {
+    new FlyingIndicator(this.rootDiv, 'Go Go Go!');
   }
 }
 
