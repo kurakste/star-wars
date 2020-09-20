@@ -10,6 +10,7 @@ import CollisionController from './Controllers/CollisionsController';
 import ScoreBoard from './ScoreBoard';
 import GameState from './GameState';
 class MainGame implements Game {
+  public mainHeroInstance: Hero;
   public events = Events;
   public readonly height: number;
   public readonly width: number;
@@ -82,6 +83,7 @@ class MainGame implements Game {
     const hero = new Hero(this, 200, 800);
     this.gameState.resetScoreBoard();
     this.addObjectOnField(hero);
+    this.mainHeroInstance = hero;
   }
 
   private resetGame() {
