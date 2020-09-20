@@ -1,6 +1,7 @@
 class FlyingIndicator {
   parent: HTMLElement;
   selfHtmlElement: HTMLElement | null;
+  wrapperHtml: HTMLElement | null;
   counter = 10;
   setIntervalId: any;
   info: string;
@@ -14,6 +15,7 @@ class FlyingIndicator {
     div.style.width ='100%';
     div.innerHTML = this.renderHTML();
     parentDiv.appendChild(div);
+    this.wrapperHtml = div;
     this.selfHtmlElement = div.firstElementChild as HTMLElement;
     if (!this.selfHtmlElement) throw new Error('FlyingIndicator element was not found.');
     this.setCounter();
@@ -32,6 +34,7 @@ class FlyingIndicator {
     }
     if (this.counter>=this.maxYOffset) {
       clearInterval(this.setIntervalId)
+      this.wrapperHtml?.remove();
     }
   }
 
