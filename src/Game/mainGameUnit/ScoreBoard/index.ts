@@ -28,16 +28,16 @@ class ScoreBoard {
     if ('health' in data && data.health) this.updateIndicator('health', data.health);
     if ('health' in data && data.health) this.new.value = data.health / 900;
     if ('score' in data && data.score) this.updateIndicator('score', data.score);
-    if ('level' in data && data.level!==undefined) this.updateIndicator('level', data.level);
-    if ('isPaused' in data) 
+    if ('level' in data && data.level !== undefined) this.updateIndicator('level', data.level);
+    if ('isPaused' in data)
       if (data.isPaused) this.updateIndicator('status', 'paused');
-    if ('isGameOver' in data) 
+    if ('isGameOver' in data)
       if (data.isGameOver) this.updateIndicator('status', 'game over');
-    if ('isPaused' in data && !data.isPaused )  this.updateIndicator('status', 'game');
+    if ('isPaused' in data && !data.isPaused) this.updateIndicator('status', 'game');
   }
 
-  sendFlyingMessage() {
-    new FlyingIndicator(this.rootDiv, 'Go Go Go!');
+  sendFlyingMessage(msg = 'Go Go Go!', type = 'info'):void {
+    new FlyingIndicator(this.rootDiv, msg, type);
   }
 }
 

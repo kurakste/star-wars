@@ -70,8 +70,14 @@ class MainGame implements Game {
   }
 
   public newGame(): void {
+    this.scoreBoard.sendFlyingMessage('New game', 'good');
     this.resetGame();
     this.startGame();
+  }
+
+  public gameOver(): void {
+    this.scoreBoard.sendFlyingMessage('Game over', 'danger');
+    this.newGame();
   }
 
   public gamePauseSwitch(): void {

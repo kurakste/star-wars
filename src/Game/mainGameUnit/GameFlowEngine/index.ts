@@ -35,7 +35,7 @@ class GameFlowEngine {
     this.game.newGame();
   }
   
-  public restartGame(): void { return }
+  public restartGame(): void { return } //TODO: is it useful?
 
   protected enemyWasDestroyed(o: IGameFieldObject): void {
     const score = o.maxHealth ? o.maxHealth / 10 : 0;

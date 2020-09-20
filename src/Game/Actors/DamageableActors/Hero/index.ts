@@ -56,7 +56,7 @@ class MainHero extends DamageableActors {
   }
 
   private sendGameOver() {
-    this.game.gameFlowEngine.newGame();
+    this.game.gameOver();
   }
 
   protected getDemage(o: IGameFieldObject): void {

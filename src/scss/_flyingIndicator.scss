@@ -1,9 +1,17 @@
 .FlyingIndicator {
-  background-color: yellowgreen;
   text-align: center;
   border-radius: 50% 50% 50% 50%;
   position: absolute;
   bottom: 10px;
   right: 10px;
-
+}
+.info {
+  background-color: yellowgreen;
+}
+.danger {
+  background-color: lightsalmon;
+}
+  
+.good {
+  background-color: lightgreen;
 }

@@ -5,7 +5,9 @@ class FlyingIndicator {
   setIntervalId: any;
   info: string;
   maxYOffset: number;
-  constructor(parentDiv: HTMLElement, info: string, YOffset = 600){
+  type: string; // info, danger, good 
+  constructor(parentDiv: HTMLElement, info: string, type ='info', YOffset = 600){
+    this.type = type;
     this.info = info;
     const div = document.createElement('div');
     this.maxYOffset = YOffset;
@@ -40,7 +42,7 @@ class FlyingIndicator {
   renderHTML(): string {
     /*html*/
     return `
-      <div class="FlyingIndicator">
+      <div class="FlyingIndicator ${this.type}">
         <p>${this.info}
       </div>
     `

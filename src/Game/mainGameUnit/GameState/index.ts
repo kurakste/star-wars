@@ -27,8 +27,11 @@ class GameState {
   }
 
   set health(data: number) {
+    let dh = 0;
+    if (this._health) dh = data - this._health;
     this._health = data;
     this.updateScoreboard('health', data);
+    dh && this.game.scoreBoard.sendFlyingMessage(`${dh} health`, 'danger')
   }
 
   get health(): number {
@@ -78,9 +81,9 @@ class GameState {
   }
 
   private calculateGameLevel(score: number): void {
-      if (score >= 200 * this.level) {
-        this.level = Math.min(this.level + 1, 8) as TGameLevel;
-      }   
+    if (score >= 200 * this.level) {
+      this.level = Math.min(this.level + 1, 8) as TGameLevel;
+    }
   }
 }
 
