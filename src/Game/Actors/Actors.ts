@@ -1,4 +1,3 @@
-import * as cryptoRandomString from 'crypto-random-string';
 import Events from '../Interfaces/Events';
 import gameObjTypes from '../Interfaces/gameObjTypes';
 import imgPath from './mainSprites.png';
@@ -9,6 +8,7 @@ import IActorViewObject from '../Interfaces/IActorViewObject';
 
 abstract class Actor {
   static spritesImg: HTMLImageElement;
+  static counter = 0;
   public id: string;
   public type: gameObjTypes;
   public subscribes: Events[] = [];
@@ -28,6 +28,7 @@ abstract class Actor {
   protected game: Game; 
 
   constructor(game: Game, xpos: number, ypos: number, width: number, height: number) {
+    ++Actor.counter;
     this.hSpeed = 0;
     this.vSpeed = 0;
     this.spriteIndexInMatrix = 0;
@@ -42,7 +43,7 @@ abstract class Actor {
       Actor.spritesImg.src = imgPath;
       console.log('img:', Actor.spritesImg);
     }
-    this.id = cryptoRandomString({length: 10});
+    this.id = `actor #${Actor.counter}`;
   }
 
   public clock(): void { throw new Error('You has to implement clock method.') }
