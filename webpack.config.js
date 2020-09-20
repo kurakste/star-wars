@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 
 module.exports = {
@@ -47,10 +48,12 @@ module.exports = {
       title: 'Star war',
       template: './src/html/template.html'
     }),
+    new BundleAnalyzerPlugin(),
   ],
   output: {
+    // eslint-disable-next-line no-undef
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].bundle.js'
+    filename: '[name].[hash].bundle.js'
   },
   optimization: {
     splitChunks: {

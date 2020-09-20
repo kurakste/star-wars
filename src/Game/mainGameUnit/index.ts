@@ -9,7 +9,6 @@ import Hero from '../Actors/DamageableActors/Hero';
 import CollisionController from './Controllers/CollisionsController';
 import ScoreBoard from './ScoreBoard';
 import GameState from './GameState';
-
 class MainGame implements Game {
   public events = Events;
   public readonly height: number;
@@ -26,7 +25,7 @@ class MainGame implements Game {
 
   constructor(width: number, height: number) {
     try {
-      this.width = width;
+      this.width = width
       this.height = height;
       this.canvasOnHtml = document.createElement('canvas');
       const gameDiv: HTMLElement | null = document.getElementById('game');
@@ -112,7 +111,6 @@ class MainGame implements Game {
     }
     switcher[el]();
   }
-
 }
 
 export default MainGame;
