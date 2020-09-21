@@ -1,20 +1,36 @@
+@import 'colors';
+//$background: #e8d8de;
+
 body {
-  background-color: lightblue;
+  position: relative;
+  background-color: $background;
+  max-width: 800px;
+  min-width: 600px;
 }
 
 .grid-container {
   display: grid;
-  grid-template-columns: 400px 100px;
+  grid-template-columns: 20px 400px 150px;
+  grid-gap: 10px;
 }
-.grid-container {
-  display: inline-grid;
-}
+// .grid-container {
+//   display: inline-grid;
+// }
+
 #game {
+  grid-column: 2 / 2;
+  grid-row: 1;
   background-color: lightcyan;
   height: 900px;
+  box-shadow: 0 0 10px $shadow;
 }
 
 #score {
-  background-color: grey;
-  height: 900px;
+  grid-column: 3 / 3;
+  background-color: $colorThird;
+  height: 880px;
+  padding: 10px;
+  box-shadow: 0 0 10px $shadow;
+  border-radius: 10px;
 }
+
