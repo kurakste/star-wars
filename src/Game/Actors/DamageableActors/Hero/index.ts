@@ -37,9 +37,10 @@ class MainHero extends DamageableActors {
   }
   
   public borderCollisionHandler(): void {
-    // rewrite parent method;
+    // rewrite parent method
+    // TODO: Here we need write a logic what we has to do when enemy cross bottom
+    // border. 
   }
-  
   fire(): void {
     const fire = new Fire(this.game, this.xpos + 5, this.ypos - 42);
     this.game.addObjectOnField(fire);

@@ -24,7 +24,7 @@ abstract class Actor {
   protected spriteYOffset: number;
   protected spriteHeight: number;
   protected spriteWidth: number;
-  protected collisions: IGameFieldObject[] = []; // TODO: is it useful?
+  //protected collisions: IGameFieldObject[] = []; // TODO: is it useful?
   protected game: Game; 
 
   constructor(game: Game, xpos: number, ypos: number, width: number, height: number) {
