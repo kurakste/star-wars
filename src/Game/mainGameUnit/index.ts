@@ -82,6 +82,7 @@ class MainGame implements Game {
   }
 
   private gameHelpSwitch(): void {
+    if (this.gameState.isPaused) return; 
     this.gameState.isPaused =!this.gameState.isPaused;
     this.gameState.isHelpWindowOpen = !this.gameState.isHelpWindowOpen;
     if (this.gameState.isHelpWindowOpen) {
@@ -92,6 +93,7 @@ class MainGame implements Game {
   }
 
   public gamePauseSwitch(): void {
+    if (this.gameState.isHelpWindowOpen) return;
     this.gameState.isPaused =!this.gameState.isPaused
     if (this.gameState.isPaused) { 
       this.scoreBoard.pauseModalMessage.show()
