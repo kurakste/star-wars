@@ -1,7 +1,5 @@
 import Controller from "../Controller";
 import IGameFieldObject from '../../../Interfaces/IGameFieldObject.t';
-import IGameFlowEngine from '../../../Interfaces/IGameFlowEngine.t';
-import gameObjectTypes from '../../../Interfaces/gameObjTypes';
 import Game from '../../../mainGameUnit';
 import checkCollision from './checkCollisionFunction';
 import directions from '../../../Interfaces/Direction';

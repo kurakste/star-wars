@@ -15,7 +15,6 @@ class MainGame implements Game {
   public readonly height: number;
   public readonly width: number;
   public readonly canvasOnHtml: HTMLCanvasElement;
-  public gameLevel: number; //TODO: is it useful?
   public gameFlowEngine = new GameFlowEngine(this);
   public gameState = new GameState(this);
   public scoreBoard = new ScoreBoard();
