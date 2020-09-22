@@ -1,5 +1,6 @@
 import MainGame from "..";
 class GameState {
+  public isHelpWindowOpen = false;
   public _score: number;
   public _health: number;
   public _level: TGameLevel;

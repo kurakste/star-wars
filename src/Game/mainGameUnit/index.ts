@@ -58,6 +58,7 @@ class MainGame implements Game {
 
   public keyboardHandler(e: KeyboardEvent): void {
     if (e.type === 'keyup' && e.key === 'p') this.gamePauseSwitch();
+    if (e.type === 'keyup' && e.key === 'h') this.gameHelpSwitch();
     this.keyboardController.eventHandler(e);
   }
 
@@ -80,10 +81,19 @@ class MainGame implements Game {
     this.newGame();
   }
 
+  private gameHelpSwitch(): void {
+    this.gameState.isPaused =!this.gameState.isPaused;
+    this.gameState.isHelpWindowOpen = !this.gameState.isHelpWindowOpen;
+    if (this.gameState.isHelpWindowOpen) {
+      this.scoreBoard.helpModalMessage.show();
+    } else {
+      this.scoreBoard.helpModalMessage.hide();
+    }
+  }
+
   public gamePauseSwitch(): void {
     this.gameState.isPaused =!this.gameState.isPaused
     if (this.gameState.isPaused) { 
-      console.log('++++', this.gameState.isPaused)
       this.scoreBoard.pauseModalMessage.show()
     } else {
       this.scoreBoard.pauseModalMessage.hide()

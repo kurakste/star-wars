@@ -23,7 +23,8 @@ class ModalWindow {
     /*html*/
     return `
       <div class="modal-content my-text">
-        <h1>Coffee break)))</h1>
+        <h2>${name}</h2>
+        <p>${this.content}</p>
       </div>
     `
   }
