@@ -82,6 +82,12 @@ class MainGame implements Game {
 
   public gamePauseSwitch(): void {
     this.gameState.isPaused =!this.gameState.isPaused
+    if (this.gameState.isPaused) { 
+      console.log('++++', this.gameState.isPaused)
+      this.scoreBoard.pauseModalMessage.show()
+    } else {
+      this.scoreBoard.pauseModalMessage.hide()
+    }
   }
 
   private startGame() {

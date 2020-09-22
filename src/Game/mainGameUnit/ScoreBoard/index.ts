@@ -1,6 +1,7 @@
 import getNewIndicator from './getNewIndicator';
 import Indicators from './Indicators';
 import FlyingIndicator from './flyingIndicator'
+import ModalWindow from './ModalMessages';
 
 class ScoreBoard {
   health: HTMLElement;
@@ -9,6 +10,7 @@ class ScoreBoard {
   level: HTMLElement;
   new: Indicators;
   rootDiv: HTMLElement;
+  pauseModalMessage: ModalWindow;
   init(div: HTMLElement): void {
     this.rootDiv = div;
     this.health = getNewIndicator(div, 'Health');
@@ -17,6 +19,9 @@ class ScoreBoard {
     this.status = getNewIndicator(div, 'Status');
     this.new = new Indicators(div, 'Health');
     this.sendFlyingMessage();
+    this.pauseModalMessage = new ModalWindow('Нажата пауза', 'Нажата пауза');
+    
+
   }
 
   updateIndicator(name: indicatorsName, data: number | string): void {

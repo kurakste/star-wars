@@ -1,5 +1,6 @@
 import MainGame from './Game/mainGameUnit';
 import './scss/main.scss';
+import background from './assets/space_background.jpg'
 
 (async function() {
   
@@ -12,3 +13,8 @@ import './scss/main.scss';
   window.addEventListener('keyup',(e:KeyboardEvent)=>game.keyboardHandler(e));
 
 })();
+console.log('-----!>', background);
+document.body.style.backgroundImage  = 'https://ultimate-game-mixup.fandom.com/ru/wiki/%D0%9A%D0%BE%D1%81%D0%BC%D0%BE%D1%81?file=Kosmos.jpg';
+document.body.style.backgroundImage  = background;
+
+
