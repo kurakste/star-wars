@@ -45,6 +45,8 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({ 
+
+      filename: '../index.html',
       title: 'Star war',
       template: './src/html/template.html'
     }),
