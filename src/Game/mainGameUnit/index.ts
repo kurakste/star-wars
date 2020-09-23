@@ -17,7 +17,7 @@ class MainGame implements Game {
   public readonly canvasOnHtml: HTMLCanvasElement;
   public gameFlowEngine = new GameFlowEngine(this);
   public gameState = new GameState(this);
-  public scoreBoard = new ScoreBoard();
+  public scoreBoard = new ScoreBoard(this);
   private keyboardController = new KeyboardController();
   private clockController = new ClockController();
   protected drawController: DrawController;

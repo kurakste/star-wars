@@ -16,6 +16,7 @@ class MainHero extends DamageableActors {
     this.hSpeed = 10;
     this.setSpriteMatrix(this.spriteIndexInMatrix); 
     this.health = 900;
+    this.maxHealth = 900;
     this.game.gameState.health = this.health;
   }
 

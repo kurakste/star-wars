@@ -3,8 +3,9 @@ import Indicators from './Indicators';
 import FlyingIndicator from './flyingIndicator'
 import ModalWindow from './ModalMessages';
 import help from './help';
-
+import Game from '../../mainGameUnit';
 class ScoreBoard {
+  game: Game;
   health: HTMLElement;
   score: HTMLElement;
   status: HTMLElement;
@@ -13,6 +14,9 @@ class ScoreBoard {
   rootDiv: HTMLElement;
   pauseModalMessage: ModalWindow;
   helpModalMessage: ModalWindow;
+  constructor(game: Game) {
+    this.game = game;
+  }
   init(div: HTMLElement): void {
     this.rootDiv = div;
     this.health = getNewIndicator(div, 'Health');
@@ -32,7 +36,12 @@ class ScoreBoard {
 
   updateData(data: Partial<IGameState>): void {
     if ('health' in data && data.health) this.updateIndicator('health', data.health);
-    if ('health' in data && data.health) this.new.value = data.health / 900;
+    if ('health' in data && data.health) {
+      const maxHealth = this.game.mainHeroInstance 
+        ? this.game.mainHeroInstance.maxHealth 
+        : 900;
+      this.new.value = data.health / maxHealth;
+    }
     if ('score' in data && data.score) this.updateIndicator('score', data.score);
     if ('level' in data && data.level !== undefined) this.updateIndicator('level', data.level);
     if ('isPaused' in data)

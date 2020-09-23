@@ -34,6 +34,16 @@ class GameFlowEngine {
   public newGame(): void {
     this.game.newGame();
   }
+
+  public newGameLevelHasReached(): void {
+    this.game.mainHeroInstance.maxHealth += 200;
+    const health = Math.min(
+        this.game.mainHeroInstance.maxHealth, 
+        this.game.mainHeroInstance.health + 200
+        );
+    this.game.mainHeroInstance.health = health;
+    this.game.scoreBoard.updateData({health});
+  }
   
   public restartGame(): void { return } //TODO: is it useful?
 

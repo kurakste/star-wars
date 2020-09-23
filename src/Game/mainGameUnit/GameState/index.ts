@@ -84,6 +84,8 @@ class GameState {
   private calculateGameLevel(score: number): void {
     if (score >= 200 * this.level) {
       this.level = Math.min(this.level + 1, 8) as TGameLevel;
+      this.game.gameFlowEngine.newGameLevelHasReached();
+
     }
   }
 }
