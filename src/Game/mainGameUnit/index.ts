@@ -81,14 +81,14 @@ class MainGame implements Game {
   }
 
   private gameHelpSwitch(): void {
-    if (this.gameState.isPaused) return; 
+    if (this.gameState.isPaused && !this.gameState.isHelpWindowOpen) return; 
     this.gameState.isPaused =!this.gameState.isPaused;
-    this.gameState.isHelpWindowOpen = !this.gameState.isHelpWindowOpen;
-    if (this.gameState.isHelpWindowOpen) {
+    if (!this.gameState.isHelpWindowOpen) {
       this.scoreBoard.helpModalMessage.show();
     } else {
       this.scoreBoard.helpModalMessage.hide();
     }
+    this.gameState.isHelpWindowOpen = !this.gameState.isHelpWindowOpen;
   }
 
   public gamePauseSwitch(): void {

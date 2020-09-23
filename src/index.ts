@@ -14,7 +14,6 @@ import background from './assets/space_background.jpg'
 
 })();
 console.log('-----!>', background);
-document.body.style.backgroundImage  = 'https://ultimate-game-mixup.fandom.com/ru/wiki/%D0%9A%D0%BE%D1%81%D0%BC%D0%BE%D1%81?file=Kosmos.jpg';
 document.body.style.backgroundImage  = background;
 
 
